@@ -1,0 +1,54 @@
+.banner-container {
+  overflow: hidden;
+  background-color: red;
+  height: 529px;
+}
+
+.banner-img {
+  width: 600vw;
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.banner-inner {
+  width: 100vw;
+  float: left;
+
+  img {
+    width: 100%;
+    height: 529px;
+  }
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 653px;
+  width: 30px;
+  height: 28px;
+  border: none;
+  background-color: transparent;
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+}
+
+.prev {
+  left: 60px;
+}
+.next {
+  right: 60px;
+}
+
+.chapter {
+  position: absolute;
+  bottom: 60px;
+  right: 30px;
+  width: 61px;
+  height: 31px;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+  text-align: center;
+  vertical-align: top;
+}
