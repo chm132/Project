@@ -1,12 +1,11 @@
-import React from 'react';
-import Header from './Components/Home/Header';
+import Routes from './router/Routes';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Header></Header>
+    <div>
+      <Routes />
     </div>
   );
-}
+};
 
 export default App;

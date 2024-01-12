@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'ROKAF Sans Medium';
   src: url('./Fonts/ROKAFSansMedium.ttf') format('truetype');
@@ -5,4 +9,37 @@
 
 body {
   font-family: 'ROKAF Sans Medium';
+}
+
+.swiper-pagination {
+  text-align: center !important;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: blue !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-prev {
+  background: url('/public/assets/Banner/leftArrow.png') no-repeat;
+}
+
+.swiper-button-next {
+  background: url('/public/assets/Banner/rightArrow.png') no-repeat;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  opacity: 0.7;
+  background-size: 150% auto;
+  background-position: top;
 }
