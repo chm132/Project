@@ -31,7 +31,6 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: bold;
   width: ${(props) => (props.second ? '148px' : '74px')};
   height: 67px;
-  border: 1px solid #000;
   background-color: #fff;
   color: #000;
   font-size: 15px;

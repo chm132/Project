@@ -1,7 +1,6 @@
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Menu from './Menu'
-
+import { Outlet } from 'react-router-dom';
+import Header from './Header';
+import Menu from './Menu';
 
 const Navbar = () => {
   return (
@@ -11,7 +10,7 @@ const Navbar = () => {
 
       <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
