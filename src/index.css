@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'ROKAF Sans Medium';
-  src: url('./Fonts/ROKAFSansMedium.ttf') format('truetype');
+  font-family: 'Roboto-Bold';
+  src: url('./Fonts/Roboto-Bold.ttf') format('truetype');
 }
 
 body {
-  font-family: 'ROKAF Sans Medium';
+  font-family: 'Roboto-Bold';
 }
 
 .swiper-pagination {
