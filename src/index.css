@@ -7,9 +7,15 @@
   src: url('./Fonts/Roboto-Bold.ttf') format('truetype');
 }
 
-body {
-  font-family: 'Roboto-Bold';
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+
+/* body {
+  font-family: 'Roboto-Bold';
+} */
 
 .swiper-pagination {
   text-align: center !important;

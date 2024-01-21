@@ -27,7 +27,10 @@ const News = () => {
       <Header partName="올래 생활 뉴스" />
       <hr className="w-full h-[2px] bg-black my-5" />
       {newsData.map((news) => (
-        <div key={news.id} className="flex gap-5">
+        <div
+          key={news.id}
+          className="flex gap-5 rounded-sm overflow-hidden px-4 py-2 transition-all hover:scale-95 hover:rounded-md hover:border-slate-300 hover:border-[1px] hover:ease-in-out cursor-pointer"
+        >
           <img
             src={news.image}
             alt={news.image}

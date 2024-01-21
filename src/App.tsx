@@ -2,7 +2,7 @@ import Routes from './router/Routes';
 
 const App = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Routes />
     </div>
   );
