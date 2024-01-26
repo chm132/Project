@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { GrFormView } from 'react-icons/gr';
 import { LiaCommentDots } from 'react-icons/lia';
-import { CommunityDataProps } from '../../../types/CommunityDataProps';
 import Header from '../Header';
 import { useNavigate } from 'react-router-dom';
+import { PostDataProps } from '../../../types/Community/PostDataProps';
 
 const CommunityData = [
   {
@@ -36,7 +36,7 @@ const Community = () => {
   const navigate = useNavigate();
 
   const [communityData, setCommunityData] =
-    useState<CommunityDataProps[]>(CommunityData);
+    useState<PostDataProps[]>(CommunityData);
 
   return (
     <div className="">
@@ -54,7 +54,7 @@ const Community = () => {
             <p className="text-lg text-slate-500">{data.contents}</p>
             <div className="flex items-center mt-[2px] gap-2">
               <span className="flex items-center gap-[2px]">
-                <GrFormView />
+                <GrFormView size={20} />
                 <p>{data.views.toLocaleString()}</p>
               </span>
 
