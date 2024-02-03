@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 import JoinPage from '../pages/Auth/JoinPage/page';
 import SequencePage from '../pages/Auth/JoinPage/SequencePage';
 import LoginPage from '../pages/Auth/LoginPage/page';
+import CategoryPage from '../pages/CategoryPage/page';
+import SurveyPage from '../pages/SurveyPage/page';
 
 const Routes = () => {
   const location = useLocation();
@@ -27,6 +29,8 @@ const Routes = () => {
     <ReactRouters>
       <Route path="/" element={<Navbar />}>
         <Route index element={<HomePage />} />
+        <Route path=":category/:categoryId" element={<CategoryPage />} />
+        <Route path=":category/:categoryId/survey" element={<SurveyPage />} />
 
         {/* 인증과정 (로그인, 회원가입) 라우팅입니다. */}
         <Route path="auth">
@@ -40,13 +44,13 @@ const Routes = () => {
           path="community"
           element={
             <TimeLine
-              imgSrc="/assets/TimeLine/community.png"
               title="소통하러 올래"
+              imgSrc="/assets/TimeLine/community.png"
             />
           }
         >
           <Route index element={<CommunityPage />} />
-          <Route path=":postId" element={<DetailPage />} />
+          <Route path=":communityId" element={<DetailPage />} />
         </Route>
       </Route>
     </ReactRouters>

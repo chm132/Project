@@ -2,17 +2,19 @@ import { Outlet } from 'react-router-dom';
 
 interface TimeLineProps {
   imgSrc: string;
-  title: string;
+  title?: string;
+  contents?: string;
 }
 
-const TimeLine = ({ imgSrc, title }: TimeLineProps) => {
+const TimeLine = ({ imgSrc, title, contents }: TimeLineProps) => {
   return (
     <div>
-      <div className="relative mt-5">
-        <img src={imgSrc} alt="timeline" />
-        <p className="absolute top-[30%] left-[42%] font-bold text-3xl border-b-4 border-b-black">
-          {title}
-        </p>
+      <div className="relative w-full mt-5 h-80">
+        <img src={imgSrc} alt="timeline" className="w-full h-80" />
+        <section className="absolute top-[44%] left-[40%] text-center text-white">
+          <p className="pb-10 text-6xl font-semibold">{title}</p>
+          <p className="text-sm w-[300px]">{contents}</p>
+        </section>
       </div>
       <Outlet />
     </div>

@@ -16,7 +16,7 @@ const Header = ({ partName, pathName }: HeaderProps) => {
         className="flex items-center gap-[1px] cursor-pointer hover:opacity-50"
         onClick={() => navigate(`/${pathName}`)}
       >
-        <p>더보기</p>
+        <p className="text-gray-500">더보기</p>
         <IoIosArrowForward size={20} />
       </span>
     </section>

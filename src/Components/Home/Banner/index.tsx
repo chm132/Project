@@ -1,14 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  A11y,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  Autoplay,
-} from 'swiper/modules';
+import { A11y, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const BannerImage = [
@@ -36,28 +29,24 @@ const BannerImage = [
 
 const Banner = () => {
   return (
-    <div className="w-full h-96">
+    <div className="py-5 bg-gray-100">
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+        modules={[Pagination, Scrollbar, A11y, Autoplay]}
         autoplay={{ delay: 2000 }}
         loop={true}
-        navigation
         pagination={{ clickable: true }}
+        style={{ marginRight: '100px', borderRadius: '20px' }}
       >
-        <div>
-          {BannerImage.map((d) => (
-            <SwiperSlide key={d.id}>
-              <div className="w-[95%] h-80 rounded-sm overflow-hidden">
-                <img
-                  key={d.id}
-                  src={d.img}
-                  alt={d.img}
-                  className="absolute inset-0 z-10 block object-cover w-full h-80"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </div>
+        {BannerImage.map((d) => (
+          <SwiperSlide key={d.id} className="overflow-hidden">
+            <img
+              key={d.id}
+              src={d.img}
+              alt={d.img}
+              className="object-fill rounded-[20px] ml-28 h-[400px]"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 const CATEGORIES = [
   {
     id: 1,
@@ -62,19 +64,20 @@ const CATEGORIES = [
 ];
 
 const Category = () => {
+  const navigate = useNavigate();
   return (
-    <div className="grid content-around w-full grid-cols-6 gap-5 px-20 py-2 overflow-y-auto">
+    <div className="grid content-around w-full grid-cols-6 gap-5 py-10 overflow-y-auto bg-gray-100 px-28">
       {CATEGORIES.map((c) => (
         <div
           key={c.id}
+          onClick={() => navigate(`/${c.label}/${c.id}`)}
           className={`
-            flex flex-col items-center justify-center w-32 mx-auto bg-transparent border rounded-md py-[2px] cursor-pointer transition-all
-          hover:bg-gray-200
-            hover:scale-90
+            flex items-center gap-8 w-44 bg-white border rounded-lg p-2 cursor-pointer transition-all
+            hover:bg-primary01
             hover:ease-in-out
           `}
         >
-          <img src={c.img} alt={c.img} className="object-cover w-24 h-24" />
+          <img src={c.img} alt={c.img} className="object-cover w-12 h-12" />
           <p className="font-bold">{c.label}</p>
         </div>
       ))}

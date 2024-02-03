@@ -6,7 +6,7 @@ const Menu = () => {
 
   return (
     <nav className="mb-8">
-      <div onMouseEnter={() => setShowDetail(false)} className="h-1" />
+      <div onMouseEnter={() => setShowDetail(false)} className="h-4" />
       <hr />
       <ul
         className="flex items-center justify-around w-full gap-6 py-10 text-xl font-bold cursor-pointer"

@@ -16,7 +16,9 @@ const stepSlice = createSlice({
     plusStep: (state) => {
       state.count += 1;
       if (state.count === 5) {
-        setCookie('isEntered', true);
+        setCookie('isEntered', true, {
+          maxAge: 10 * 60 * 60, // isEntered 쿠키의 지속시간은 1시간
+        });
       }
     },
   },

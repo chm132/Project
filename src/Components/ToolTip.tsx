@@ -20,7 +20,7 @@ const ToolTip = ({ position, content, children }: ToolTipProps) => {
   if (!isChecked) {
     return (
       <div id="tooltip" className="relative cursor-pointer">
-        <div className="z-40 mx-2 my-1 rounded-md bg-slate-200">{children}</div>
+        <div className="z-40 py-4 mx-2 rounded-md bg-slate-200">{children}</div>
         <div className="fixed inset-0 z-10 bg-black/15" />
         <div className="">
           <span
@@ -50,6 +50,7 @@ const ToolTip = ({ position, content, children }: ToolTipProps) => {
           `}
           >
             <p className="font-bold">{content}</p>
+
             <button
               onClick={() => checkedHandler()}
               className="w-20 font-bold text-white rounded-md bg-amber-800 "
