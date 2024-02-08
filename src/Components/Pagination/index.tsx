@@ -24,7 +24,7 @@ const Pagination = ({ page, totalItems, perPage }: PaginationProps) => {
   const arr = new Array(totalPages + 2); // 왼쪽, 오른쪽 아이콘 포함
 
   return (
-    <div className="flex items-center justify-center gap-2 pb-2 mt-4">
+    <div className="flex items-center justify-center gap-2 pb-24 mt-4">
       {[...arr].map((_, index) => {
         const { page, disabled, current } = getPageItem(index);
         if (page === 'previous') {

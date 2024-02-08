@@ -20,7 +20,7 @@ const LessonCard = ({
   startTime,
 }: LessonCardProps) => {
   return (
-    <div className="relative w-64 border rounded-[18px] shadow-lg cursor-pointer hover:scale-105 hover:ease-in-out transition-all">
+    <div className="relative w-64 border-2 rounded-[18px] shadow-lg cursor-pointer hover:scale-105 hover:ease-in-out transition-all">
       {/* <img
         src={'/assets/Lesson/lessonCard.jpeg'}
         alt="lesson-img"

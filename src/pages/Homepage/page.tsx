@@ -10,6 +10,7 @@ import Community from '../../Components/Home/Community';
 import News from '../../Components/Home/News';
 import Teacher from '../../Components/Home/Teacher';
 import { useEffect, useRef } from 'react';
+import FloatingButton from '../../Components/Home/FloatingButton';
 
 function HomePage() {
   const step = useSelector((state: RootState) => state.step.count);
@@ -96,6 +97,7 @@ function HomePage() {
       ) : (
         <Teacher />
       )}
+      <FloatingButton />
     </div>
   );
 }

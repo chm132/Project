@@ -8,31 +8,32 @@ import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
 import { EducationDataProps } from '../../../types/EducationDataProps';
 import Header from '../Header';
+import { truncate } from '../../../utils/truncate';
 
 const PopularEducationData = [
   {
     id: 1,
     img: '/assets/Education/edu1.png',
-    title: '스마트폰',
-    userNum: 13000,
+    title: '왕초보를 위한 스마트폰 활용 꿀팁',
+    userNum: 38,
   },
   {
     id: 2,
     img: '/assets/Education/edu2.png',
-    title: '키오스크',
-    userNum: 2000,
+    title: '카카오톡, 생활에 유용한 앱 활용',
+    userNum: 24,
   },
   {
     id: 3,
     img: '/assets/Education/edu3.png',
-    title: '야구',
-    userNum: 1300,
+    title: '재미있고 유익한 부동산 상식',
+    userNum: 17,
   },
   {
     id: 4,
     img: '/assets/Education/edu4.png',
-    title: '요가',
-    userNum: 34000,
+    title: '중장년 재취업을 위한 새로운 가능성과 성공 전략',
+    userNum: 9,
   },
   {
     id: 5,
@@ -70,26 +71,27 @@ const RecentEducationData = [
   {
     id: 1,
     img: '/assets/Education/edu8.png',
-    title: '스마트폰',
-    place: '포켓몬센터',
+    title: '재철재료를 사용한 즐거운 남자들의 요리교실',
+    place: '서부50플러스센터',
   },
   {
     id: 2,
     img: '/assets/Education/edu7.png',
-    title: '키오스크',
-    place: '디지몬센터',
+    title: '재미있고 유익한 부동산 상식',
+    place: '금천50플러스센터',
   },
   {
     id: 3,
     img: '/assets/Education/edu6.png',
-    title: '야구',
-    place: '아이돌 중 센터',
+    title:
+      '삶을 변화시키는 성북하루공부(알기 쉬운 국제상식(모든 국세는 홈택스로 통한다))',
+    place: '실시간 온라인(유튜브)',
   },
   {
     id: 4,
     img: '/assets/Education/edu5.png',
-    title: '요가',
-    place: '짱구센터',
+    title: '누구나 쉽게 귀에 쏙쏙 컴퓨터 왕기초',
+    place: '노원50플러스센터',
   },
   {
     id: 5,
@@ -138,7 +140,9 @@ const Row = ({ title, data }: RowProps) => {
                   className="object-cover w-full h-40 mt-10 rounded-lg"
                 />
                 <div className="font-medium">
-                  <p className="text-lg">{d.title} 사용법</p>
+                  <p className="text-lg hover:underline hover:decoration-4 w-fit">
+                    {truncate(d.title, 20)}
+                  </p>
                   {data === 'popular' ? (
                     <p className="text-gray-400">{d.userNum}명 신청중!</p>
                   ) : (

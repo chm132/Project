@@ -52,6 +52,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://3.38.228.144:8080",
   "devDependencies": {
     "@types/react-modal": "3.16.3",
     "autoprefixer": "10.4.16",

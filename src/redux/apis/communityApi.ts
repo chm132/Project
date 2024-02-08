@@ -2,13 +2,28 @@ import { apiSlice } from '.';
 import { CommunityResponse } from '../../types/Response/Community/CommunityType';
 import { DetailCommunityResponse } from '../../types/Response/Community/DetailCommunityType';
 
+interface GetCommunityParams {
+  category?: string;
+  pageNo?: string;
+}
+
 const communityApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCommunity: builder.query<CommunityResponse, number | void>({
+    getCommunity: builder.query<CommunityResponse, GetCommunityParams>({
       providesTags: ['Community'],
-      query: (page) => {
+      query: ({ category, pageNo }) => {
+        // 쿼리 파라미터 동적 생성
+        let queryParams = '';
+
+        if (pageNo) {
+          queryParams += `?page=${pageNo}`;
+        }
+
+        if (category && category !== '분류')
+          queryParams += `${queryParams ? '&' : '?'}category=${category}`;
+
         return {
-          url: page ? `/community?page=${page}` : '/community',
+          url: `community${queryParams}`,
           method: 'GET',
         };
       },

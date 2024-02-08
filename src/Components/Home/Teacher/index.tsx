@@ -10,42 +10,43 @@ import 'swiper/css/navigation';
 import { useState } from 'react';
 import { TeacherDataProps } from '../../../types/TeacherDataProps';
 import Header from '../Header';
+import { truncate } from '../../../utils/truncate';
 
 const TeacherData: TeacherDataProps[] = [
   {
     id: 1,
     profileImg: '/assets/Teacher/teacher1.png',
     stars: 5.0,
-    name: '김철수',
+    name: '김유리',
     major: '골프/수영',
-    careerYear: 2,
+    careerYear: 5,
     responseTime: 1,
   },
   {
     id: 2,
     profileImg: '/assets/Teacher/teacher2.png',
     stars: 5.0,
-    name: '김철수',
-    major: '골프/수영',
-    careerYear: 2,
+    name: '이사부',
+    major: '취업/창업',
+    careerYear: 8,
     responseTime: 1,
   },
   {
     id: 3,
     profileImg: '/assets/Teacher/teacher3.png',
     stars: 5.0,
-    name: '김철수',
-    major: '골프/수영',
-    careerYear: 2,
+    name: '김기강',
+    major: '영상촬영/편집/일러스트',
+    careerYear: 9,
     responseTime: 1,
   },
   {
     id: 4,
     profileImg: '/assets/Teacher/teacher4.png',
     stars: 5.0,
-    name: '김철수',
-    major: '골프/수영',
-    careerYear: 2,
+    name: '신백호',
+    major: '담보/분양권/상속',
+    careerYear: 16,
     responseTime: 1,
   },
   {
@@ -117,7 +118,9 @@ const Teacher = () => {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <p className="font-medium">{d.major}</p>
+                      <p className="text-sm font-medium">
+                        {truncate(d.major, 9)}
+                      </p>
                       <p className="text-gray-500">경력 {d.careerYear}년</p>
                     </div>
                     <div>

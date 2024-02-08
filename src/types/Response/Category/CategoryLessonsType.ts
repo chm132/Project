@@ -1,4 +1,4 @@
-interface LessonList {
+export interface LessonList {
   lessonId: number;
   title: string;
   gatherStartDate: string;

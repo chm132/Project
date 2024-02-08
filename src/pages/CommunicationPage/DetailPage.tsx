@@ -1,55 +1,85 @@
-import { CgProfile } from 'react-icons/cg';
-import { GrFormView } from 'react-icons/gr';
-import { formatTime } from '../../utils/dayjs';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGetDetailCommunityQuery } from '../../redux/apis/communityApi';
+import { IoIosArrowBack } from 'react-icons/io';
+import Profile from '../../Components/Communication/DetailPage/Profile';
+import EnteredComment from '../../Components/Communication/DetailPage/EnteredComment';
+import Contents from '../../Components/Communication/DetailPage/Contents';
 
 const DetailPage = () => {
   const communityId = Number(useParams().communityId) || 0;
+  const navigate = useNavigate();
+
   const { data, isLoading, error } = useGetDetailCommunityQuery(communityId);
 
-  console.log(data);
+  let content;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    content = <div>Loading...</div>;
   }
   if (error) {
-    return <div>Network Error...</div>;
+    content = <div>Network Error...</div>;
   }
 
-  return (
-    <div className="mx-40 mt-20 border rounded-md">
-      <div className="p-8">
-        <p className="font-bold text-gray-500">{data?.result.category}</p>
-        <section className="flex items-center gap-3 py-4">
-          {/* {data.result.profileImg !== '' ? (
-            <img
-              src={writerData.profileImg}
-              alt={writerData.profileImg}
-              className="object-cover w-12 h-12 rounded-full"
-            />
-          ) : (
-            <CgProfile size={40} />
-          )} */}
-          <span className="font-bold">
-            <p>{data?.result.memberName}</p>
-            {/* <p>{postData.date}</p> */}
-            <p className="text-xs text-gray-500">
-              {data && formatTime(data.result.createdAt)}
+  if (data) {
+    const detailData = data.result;
+    content = (
+      <>
+        <nav className="flex items-center h-20">
+          <div
+            className="flex items-center justify-center w-40 gap-1 cursor-pointer"
+            onClick={() =>
+              navigate('/community', {
+                state: {
+                  category: detailData.category,
+                },
+              })
+            }
+          >
+            <IoIosArrowBack size={24} />
+            <p className="font-medium text-[#333333] text-lg">
+              {detailData.category === 'TOGETHER' ? '같이해요' : '궁금해요'}
             </p>
-          </span>
-        </section>
-        <p className="py-6 text-2xl font-bold">{data?.result.title}</p>
-        <p className="text-lg">{data?.result.body}</p>
-        <section className="flex items-center gap-[2px] pt-10">
-          <GrFormView size={28} />
-          <p className="text-sm text-gray-500">
-            {data?.result.views.toLocaleString()}명이 봤어요
-          </p>
-        </section>
-      </div>
-    </div>
-  );
+          </div>
+        </nav>
+        <div className="bg-[#F2F2F2] px-40 pt-10 pb-28">
+          <div className="py-8 px-12 border rounded-[18px] shadow-lg transition-all bg-white">
+            <Profile name={detailData.memberName} date={detailData.createdAt} />
+            <p className="py-6 text-2xl font-semibold">{detailData.title}</p>
+            <p className="text-lg font-medium text-[#666666]">
+              {detailData.body}
+            </p>
+            <section className="flex items-center justify-end gap-[2px] pt-10">
+              <img
+                src="/assets/Utils/view.svg"
+                alt="view"
+                className="w-6 h-6"
+              />
+              <p className="text-lg text-[#999999]">
+                {detailData.views.toLocaleString()}명이 봤어요
+              </p>
+            </section>
+            <EnteredComment />
+            <section className="flex flex-col gap-5">
+              <p className="font-medium text-[#666666] text-lg">
+                댓글 {detailData.communityCommentList.length}개
+              </p>
+              {detailData.communityCommentList.map((comment) => (
+                <div key={comment.id}>
+                  <Contents
+                    name={comment.memberName}
+                    content={comment.content}
+                    likes={comment.likeCounts}
+                  />
+                </div>
+              ))}
+            </section>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return <div>{content}</div>;
 };
 
 export default DetailPage;

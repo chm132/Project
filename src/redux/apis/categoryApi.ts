@@ -3,43 +3,32 @@ import { CategoryLessonsResponse } from '../../types/Response/Category/CategoryL
 
 interface ParamsProps {
   categoryId: number;
-  pageNo?: number;
+  pageNo?: string;
+  keyword?: string;
 }
 
-interface SearchParamsProps {
-  keyword: string | null;
-  fee: boolean | null;
-  status: boolean | null;
-  pageNo: any;
-}
-
-const categoryApi = apiSlice.injectEndpoints({
+export const categoryApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCategoryLessons: builder.query<CategoryLessonsResponse, ParamsProps>({
       providesTags: ['Lesson'],
-      query: ({ categoryId, pageNo }) => {
+      query: ({ categoryId, pageNo, keyword }) => {
+        let queryParams = '';
+
+        if (keyword) {
+          queryParams += `?keyword=${keyword}`;
+        }
+
+        if (pageNo) {
+          queryParams += `${queryParams ? '&' : '?'}page=${pageNo}`;
+        }
+
         return {
-          // url: `/lesson/category/${categoryId}?page=${pageNo}`,
-          url: pageNo
-            ? `/lesson/category/${categoryId}?page=${pageNo}`
-            : `/lesson/category/${categoryId}`,
+          url: `/lesson/category/${categoryId}${queryParams}`,
           method: 'GET',
         };
       },
     }),
-    getSearchLessons: builder.query<CategoryLessonsResponse, SearchParamsProps>(
-      {
-        providesTags: ['Lesson'],
-        query: ({ keyword, fee, status, pageNo }) => {
-          return {
-            url: `/lesson/search?page=${pageNo}&query=${keyword}&fee=${fee}&status=${status}`,
-            method: 'GET',
-          };
-        },
-      },
-    ),
   }),
 });
 
-export const { useGetCategoryLessonsQuery, useGetSearchLessonsQuery } =
-  categoryApi;
+export const { useGetCategoryLessonsQuery } = categoryApi;

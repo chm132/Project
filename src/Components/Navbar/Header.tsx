@@ -6,17 +6,23 @@ const Header = () => {
     <header className="mt-10 mb-6 px-28">
       <span className="flex items-center gap-4">
         <img
-          src="/assets/logo.png"
+          src="/assets/logo.svg"
           alt="logo"
           className="object-cover w-20 h-8 cursor-pointer"
           onClick={() => navigate('/')}
         />
-
-        <input
-          className="px-4 py-2 border rounded-full outline-none text-primary01 border-primary01 w-96 placeholder-primary01"
-          type="text"
-          placeholder="배우고 싶은 분야가 있나요? 여기에 검색해 보세요!"
-        />
+        <section className="relative">
+          <input
+            className="px-4 py-2 border rounded-full outline-none text-primary01 border-primary01 w-[540px] placeholder-primary01"
+            type="text"
+            placeholder="배우고 싶은 분야가 있나요? 제목/강사명/수업 내용으로 검색해 보세요!"
+          />
+          <img
+            src="/assets/Utils/search.svg"
+            alt="search"
+            className="absolute w-6 h-6 cursor-pointer right-4 top-2"
+          />
+        </section>
       </span>
       <span className="flex items-center justify-between mt-10">
         <ul className="flex items-center gap-8 text-xl font-semibold cursor-pointer">
