@@ -15,7 +15,8 @@ import CategoryPage from '../pages/CategoryPage/page';
 import SurveyPage from '../pages/SurveyPage/page';
 import SurveyPage2 from '../pages/SurveyPage/SurveyPage2';
 import NotFound from '../pages/NotFound/page';
-
+import NewsPage from '../pages/NewsPage/page';
+import NewsDetailPage from '../pages/NewsPage/DetailPage';
 const Routes = () => {
   const location = useLocation();
 
@@ -58,7 +59,21 @@ const Routes = () => {
           <Route index element={<CommunityPage />} />
           <Route path=":communityId" element={<DetailPage />} />
         </Route>
+        {/* 뉴스 페이지 라우팅 */}
+        <Route
+          path="news"
+          element={
+            <TimeLine
+              imgSrc={`/assets/News/news.png`}
+              title={`올래 생활뉴스`}
+            />
+          }
+        >
+          <Route index element={<NewsPage />} />
+          <Route path=":newsId" element={<NewsDetailPage />} />
+        </Route>
       </Route>
+
       {/* 잘못된 경로로 들어왔을 경우 */}
       <Route path="/*" element={<NotFound />} />
     </ReactRouters>

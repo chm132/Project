@@ -1,11 +1,13 @@
 import Header from '../Header';
+import { useNavigate } from 'react-router-dom';
 import { truncate } from '../../../utils/truncate';
 import { fromNow } from '../../../utils/dayjs';
 import { useGetNewsQuery } from '../../../redux/apis/newsApi';
 
 const News = () => {
+  const navigate = useNavigate();
   let content;
-  const { data, isLoading, error } = useGetNewsQuery();
+  const { data, isLoading, error } = useGetNewsQuery({});
 
   if (isLoading) {
     content = <p>Loading...</p>;
@@ -24,6 +26,7 @@ const News = () => {
           <div
             key={news.id}
             className="flex gap-5 p-2 overflow-hidden transition-all cursor-pointer"
+            onClick={() => navigate(`/news/${news.id}`)}
           >
             <img
               // src={news.filePath}
@@ -70,7 +73,7 @@ const News = () => {
 
   return (
     <div className="">
-      <Header partName="올래 생활 뉴스" />
+      <Header partName="올래 생활 뉴스" pathName="news" />
       <hr className="w-full h-[2px] bg-black mt-2 mb-5" />
       {content}
     </div>
