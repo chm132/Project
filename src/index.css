@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('./Fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.swiper-pagination {
+  text-align: center !important;
+  padding-left: 80px;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ec9d26 !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-next {
+  background: url('/public/assets/Banner/rightArrow.png') no-repeat;
+  width: 44px !important;
+  height: 44px !important;
+  right: 0px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  cursor: pointer !important;
+}
+
+.swiper-button-prev {
+  background: url('/public/assets/Banner/leftArrow.png') no-repeat;
+  width: 44px !important;
+  height: 44px !important;
+  left: 0px !important;
+  background-size: cover !important;
+  background-position: top !important;
+  cursor: pointer !important;
+}
