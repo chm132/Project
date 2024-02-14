@@ -13,10 +13,8 @@ const Menu = () => {
 
   return (
     <div className="relative">
-      <span
-        className="flex items-center justify-between pt-10"
-        onMouseEnter={() => setShowMenu(false)}
-      >
+      <span className="flex items-center justify-between pt-10">
+        <div onMouseEnter={() => setShowMenu(false)} className="hidden h-10" />
         <ul
           className="flex items-center gap-8 text-xl font-semibold"
           onMouseEnter={() => setShowMenu(true)}
@@ -71,7 +69,7 @@ const Menu = () => {
         className={`
       ${
         showMenu
-          ? 'bg-white w-screen absolute top-[92px] h-72 z-20 border-t'
+          ? 'bg-white w-[1025px] absolute top-[92px] h-72 z-20 border-t'
           : 'hidden'
       }
     `}

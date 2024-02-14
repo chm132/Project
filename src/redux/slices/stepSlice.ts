@@ -15,7 +15,7 @@ const stepSlice = createSlice({
   reducers: {
     plusStep: (state) => {
       state.count += 1;
-      if (state.count === 5) {
+      if (state.count === 7) {
         setCookie('isEntered', true, {
           maxAge: 10 * 60 * 60, // isEntered 쿠키의 지속시간은 1시간
         });

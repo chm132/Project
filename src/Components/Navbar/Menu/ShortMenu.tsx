@@ -5,7 +5,7 @@ interface ShortMenuProps {
 const ShortMenu = ({ setShowClass }: ShortMenuProps) => {
   return (
     <div className="flex flex-col items-center">
-      <section className="bg-[#E6E6E6] font-medium text-[#808080] flex items-center py-5 overflow-hidden">
+      <section className="bg-[#F2F2F2] font-medium text-[#808080] flex items-center py-5 overflow-hidden">
         <p className="w-64 pl-12">디지털</p>
         <p className="w-64 pl-12">취미</p>
         <p className="w-64 pl-12">경제</p>

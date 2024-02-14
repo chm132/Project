@@ -3,12 +3,11 @@ import { plusStep } from '../redux/slices/stepSlice';
 import { useDispatch } from 'react-redux';
 
 interface ToolTipProps {
-  position: string;
-  content: string;
+  step: string;
   children: React.ReactNode;
 }
 
-const ToolTip = ({ position, content, children }: ToolTipProps) => {
+const ToolTip = ({ step, children }: ToolTipProps) => {
   const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -19,71 +18,51 @@ const ToolTip = ({ position, content, children }: ToolTipProps) => {
 
   if (!isChecked) {
     return (
-      <div id="tooltip" className="relative cursor-pointer">
+      <div className="relative cursor-pointer">
         <div className="z-40 py-4 mx-2 rounded-md bg-slate-200">{children}</div>
-        <div className="fixed inset-0 z-10 bg-black/15" />
-        <div className="">
-          <span
-            className={`
-            flex flex-col items-end gap-5 z-50 px-8 py-10 mb-2 w-80
-            absolute  bg-slate-100 text-black text-sm p-2 rounded-md
-            ${
-              position === 'top'
-                ? 'left-1/3 -translate-x-1/2 bottom-[calc(80%+5px)]'
-                : ''
-            }
-            ${
-              position === 'bottom'
-                ? 'left-1/3 -translate-x-1/2 top-[calc(90%+5px)]'
-                : ''
-            }
-            ${
-              position === 'left'
-                ? 'top-1/3 -translate-y-1/2 right-[calc(100%+30px)]'
-                : ''
-            }
-            ${
-              position === 'right'
-                ? 'top-1/3 -translate-y-1/2 left-[calc(100%+30px)]'
-                : ''
-            }
-          `}
-          >
-            <p className="font-bold">{content}</p>
-
-            <button
-              onClick={() => checkedHandler()}
-              className="w-20 font-bold text-white rounded-md bg-amber-800 "
-            >
-              확인했어요
-            </button>
-          </span>
-        </div>
-        <span
+        <div className="fixed inset-0 z-10 bg-black/50" />
+        <section
           className={`
-          absolute block border-[25px] z-50
-          ${
-            position === 'top'
-              ? 'left-[30%] -translate-x-1/2 bottom-[80%] border-l-transparent border-r-transparent border-b-0 border-t-slate-100'
-              : ''
-          }
-          ${
-            position === 'bottom'
-              ? 'left-[30%] -translate-x-1/2 top-[88%] border-l-transparent border-r-transparent border-t-0 border-b-slate-100'
-              : ''
-          }
-          ${
-            position === 'left'
-              ? 'top-1/2 -translate-y-1/2 right-[110%] border-t-transparent border-b-transparent border-r-0 border-l-slate-100'
-              : ''
-          }
-          ${
-            position === 'right'
-              ? 'top-1/2 -translate-y-1/2 left-full border-t-transparent border-b-transparent border-l-0 border-r-slate-100'
-              : ''
-          }
-        `}
-        ></span>
+            ${
+              step === 'first' &&
+              'absolute z-40 flex items-end gap-3 left-96 -bottom-6'
+            }
+            ${
+              step === 'second' &&
+              'absolute z-40 flex items-end gap-3 left-[500px] -bottom-20'
+            }
+            ${
+              step === 'third' &&
+              'absolute z-40 flex items-start gap-3 left-12 -top-20 w-[700px]'
+            }
+            ${
+              step === 'fourth' &&
+              'absolute z-40 flex items-end gap-3 right-20 -bottom-16 w-[750px]'
+            }
+            ${
+              step === 'fifth' &&
+              'absolute z-40 flex items-start gap-3 left-32 -top-20 w-[700px]'
+            }
+            `}
+        >
+          <button
+            onClick={() => checkedHandler()}
+            className={`${
+              step !== 'fourth' && 'hidden'
+            } px-4 py-[14px] font-semibold text-white rounded-2xl bg-primary01 w-full`}
+          >
+            확인했어요
+          </button>
+          <img src={`/assets/OnBoarding/${step}.svg`} alt="step" />
+          <button
+            onClick={() => checkedHandler()}
+            className={`${
+              step === 'fourth' && 'hidden'
+            } px-4 py-[14px] font-semibold text-white rounded-2xl bg-primary01 w-full`}
+          >
+            확인했어요
+          </button>
+        </section>
       </div>
     );
   } else {
