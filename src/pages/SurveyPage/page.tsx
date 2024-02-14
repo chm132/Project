@@ -1,5 +1,3 @@
-//여기다가 테스트 일단 첫번째임
-
 import React, { useEffect, useState } from 'react';
 import TimeLine from '../../Components/TimeLine';
 import { categoryMapping } from '../CategoryPage/page';
