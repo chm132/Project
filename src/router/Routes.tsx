@@ -11,7 +11,6 @@ import { useEffect } from 'react';
 import LoginPage from '../pages/Auth/LoginPage/page';
 import CategoryPage from '../pages/CategoryPage/page';
 import SurveyPage from '../pages/SurveyPage/page';
-import SurveyPage2 from '../pages/SurveyPage/SurveyPage2';
 import NotFound from '../pages/NotFound/page';
 import NewsPage from '../pages/NewsPage/page';
 import NewsDetailPage from '../pages/NewsPage/DetailPage';
@@ -40,10 +39,6 @@ const Routes = () => {
         <Route path=":category/:categoryId" element={<CategoryPage />} />
         <Route path="lesson" element={<LessonPage />} />
         <Route path=":category/:categoryId/survey" element={<SurveyPage />} />
-        <Route
-          path=":category/:categoryId/survey/2"
-          element={<SurveyPage2 />}
-        />
 
         {/* 인증과정 (로그인, 회원가입) 라우팅입니다. */}
         <Route path="auth">
