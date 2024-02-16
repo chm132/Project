@@ -4,7 +4,7 @@ interface ProgressBarProps {
 
 const ProgressBar = ({ step }: ProgressBarProps) => {
   const totalSteps = 6;
-  const progressWidth = Math.max(((step - 1) / (totalSteps - 1)) * 100 - 10, 0);
+  const progressWidth = Math.max(((step - 1) / (totalSteps - 1)) * 100, 0);
 
   return (
     <div className=" w-[1070px] h-2 rounded-[4px] bg-[#CCCCCC] relative m-auto top-5 overflow-hidden">
