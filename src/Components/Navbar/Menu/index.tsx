@@ -15,19 +15,25 @@ const Menu = () => {
     <div className="relative">
       <span className="flex items-center justify-between pt-10">
         <div onMouseEnter={() => setShowMenu(false)} className="hidden h-10" />
-        <ul
-          className="flex items-center gap-8 text-xl font-semibold"
-          onMouseEnter={() => setShowMenu(true)}
-        >
+        <ul className="flex items-center gap-8 text-xl font-semibold">
           <li
             className={`cursor-pointer hover:text-primary01 ${
               showMenu && 'text-primary01'
             }`}
+            onMouseEnter={() => setShowMenu(true)}
           >
             올래 교육
           </li>
-          <li className="cursor-pointer hover:text-primary01">소통하러 올래</li>
-          <li className="cursor-pointer hover:text-primary01">올래 생활뉴스</li>
+          <Link to="/community">
+            <li className="cursor-pointer hover:text-primary01">
+              소통하러 올래
+            </li>
+          </Link>
+          <Link to="/news">
+            <li className="cursor-pointer hover:text-primary01">
+              올래 생활뉴스
+            </li>
+          </Link>
           <li className="cursor-pointer hover:text-primary01">
             우리 동네 인기 선생님
           </li>
@@ -78,7 +84,7 @@ const Menu = () => {
         <WideMenu />
       </section>
       {showMenu && (
-        <div className="fixed top-0 left-0 z-10 w-screen h-screen bg-black opacity-30"></div>
+        <div className="fixed top-0 left-0 z-10 w-screen h-screen bg-black opacity-30" />
       )}
     </div>
   );

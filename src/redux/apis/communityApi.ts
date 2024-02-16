@@ -37,8 +37,19 @@ const communityApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    postComment: builder.mutation({
+      invalidatesTags: ['Community'],
+      query: ({ communityId, ...post }) => ({
+        method: 'POST',
+        url: `/community/${communityId}/comments`,
+        body: post,
+      }),
+    }),
   }),
 });
 
-export const { useGetCommunityQuery, useGetDetailCommunityQuery } =
-  communityApi;
+export const {
+  useGetCommunityQuery,
+  useGetDetailCommunityQuery,
+  usePostCommentMutation,
+} = communityApi;

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setSurveyFifth } from '../../../redux/slices/surveySlice';
+import { RootState } from '../../../redux/store';
+import { usePostSurveyMutation } from '../../../redux/apis/categoryApi';
 
 interface Citydetails {
   [city: string]: {
@@ -73,9 +77,40 @@ interface Survey6Props {
 }
 
 function Survey6({ onNextButtonClick }: Survey6Props) {
-  const handleButtonClick = () => {
+  const dispatch = useDispatch();
+  const [postSurvey] = usePostSurveyMutation();
+  const surveyValues = useSelector((state: RootState) => state.survey);
+
+  const {
+    sub_categoryIds,
+    classType,
+    teacher_gender,
+    teacher_age,
+    choices,
+    age,
+    gender,
+    address,
+  } = surveyValues;
+
+  const postHandler = async () => {
+    const response = await postSurvey({
+      sub_categoryIds: sub_categoryIds,
+      classType: classType,
+      teacher_gender: teacher_gender,
+      teacher_age: teacher_age,
+      choices: choices,
+      age: age,
+      gender: gender,
+      address: address,
+    });
+
+    console.log(response);
     onNextButtonClick(6);
   };
+
+  // const handleButtonClick = () => {
+
+  // };
   const PrevButtonClick = () => {
     onNextButtonClick(5);
   };
@@ -112,11 +147,17 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
     setShowDong(false);
   };
 
+  dispatch(
+    setSurveyFifth({
+      address: selectedCity + ' ' + selectedGu + ' ' + selectedDong,
+    }),
+  );
+
   return (
     <div>
       <div className="flex flex-col">
-        <div className="pt-14 pl-14 gap-16">
-          <p className=" text-lg font-semibold">
+        <div className="gap-16 pt-14 pl-14">
+          <p className="text-lg font-semibold ">
             8. 고객님의 주소를 알려주세요.
           </p>
           <div className="flex gap-7 w-[980px] h-[300px]">
@@ -134,19 +175,20 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
                 >
                   {selectedCity ? selectedCity : '시/도'}
                 </p>
-                <div className=" mt-1" onClick={resetSelection}>
+                <div className="mt-1 " onClick={resetSelection}>
                   <img
                     src={
                       selectedCity
                         ? '/assets/Survey/orangecheck.svg'
                         : '/assets/Survey/graycheck.svg'
                     }
+                    alt="img"
                   />
                 </div>
               </div>
               {showCities && (
                 <div className="h-60 w-100 border rounded-2xl px-6 py-5 text-sm mt-[-36px] overflow-auto scrollbar-container">
-                  <div className="mt-6 flex flex-col gap-5 h-3000">
+                  <div className="flex flex-col gap-5 mt-6 h-3000">
                     {Object.keys(cityDetails).map((city, index) => (
                       <p key={index} onClick={() => handleCityClick(city)}>
                         {city}
@@ -171,19 +213,20 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
                 >
                   {selectedGu ? selectedGu : '시/군/구'}
                 </p>
-                <div className=" mt-1" onClick={resetSelection2}>
+                <div className="mt-1 " onClick={resetSelection2}>
                   <img
                     src={
                       selectedGu
                         ? '/assets/Survey/orangecheck.svg'
                         : '/assets/Survey/graycheck.svg'
                     }
+                    alt="img"
                   />
                 </div>
               </div>
               {showGu && (
                 <div className="h-60 w-100 border rounded-2xl px-6 py-5 text-sm mt-[-36px] overflow-auto scrollbar-container">
-                  <div className="mt-6 flex flex-col gap-5 h-3000">
+                  <div className="flex flex-col gap-5 mt-6 h-3000">
                     {selectedCity &&
                       cityDetails[selectedCity] &&
                       Object.keys(cityDetails[selectedCity]).map(
@@ -212,19 +255,20 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
                 >
                   {selectedDong ? selectedDong : '읍/면/동'}
                 </p>
-                <div className=" mt-1" onClick={resetSelection3}>
+                <div className="mt-1 " onClick={resetSelection3}>
                   <img
                     src={
                       selectedDong
                         ? '/assets/Survey/orangecheck.svg'
                         : '/assets/Survey/graycheck.svg'
                     }
+                    alt="img"
                   />
                 </div>
               </div>
               {showDong && (
                 <div className="h-60 w-100 border rounded-2xl px-6 py-5 text-sm mt-[-36px] overflow-auto scrollbar-container">
-                  <div className="mt-6 flex flex-col gap-5 h-3000">
+                  <div className="flex flex-col gap-5 mt-6 h-3000">
                     {selectedCity &&
                       selectedGu &&
                       cityDetails[selectedCity][selectedGu].map(
@@ -245,12 +289,18 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
             className="hover:opacity-80  w-[240px] h-[51px] bg-[#B3B3B3] rounded-[50px] text-white ml-[315px] mt-[60px] flex justify-center py-3"
             onClick={PrevButtonClick}
           >
-            <img className=" px-1 py-1" src="/assets/Survey/previmg.svg"></img>
+            <img
+              className="px-1 py-1 "
+              src="/assets/Survey/previmg.svg"
+              alt="img"
+            />
             <p className="font-medium">이전으로</p>
           </button>
-          <button className=" hover:opacity-80  w-[240px] h-[51px] bg-primary01 rounded-[50px] text-white ml-8 mt-[60px] flex justify-center py-3">
-            <p className="font-medium">다음으로</p>
-            <img className=" px-1 py-1" src="/assets/Survey/nextimg.svg"></img>
+          <button
+            className=" hover:opacity-80  w-[240px] h-[51px] bg-primary01 rounded-[50px] text-white ml-8 mt-[60px] flex justify-center py-3"
+            onClick={postHandler}
+          >
+            <p className="font-medium">완료!</p>
           </button>
         </div>
       </div>

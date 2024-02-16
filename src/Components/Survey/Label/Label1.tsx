@@ -1,25 +1,22 @@
-import { useState } from 'react';
-
 interface LabelProps {
-  age: any;
+  content: string;
+  isChecked: boolean;
+  onChange: (isChecked: boolean) => void;
 }
 
-const Label1 = ({ age }: LabelProps) => {
-  const [clicked, setClicked] = useState(false);
-  const onClick = () => setClicked(!clicked);
-
+const Label1 = ({ content, isChecked, onChange }: LabelProps) => {
   return (
-    <div className="flex items-center flex-col gap-2">
-      <p className="text-[#666666]">{age}대</p>
+    <div className="flex flex-col items-center gap-2">
+      <p className="text-[#666666]">{content}</p>
       <div
         className={`${
-          !clicked
+          !isChecked
             ? 'hover:bg-primary01 border w-10 h-10 rounded-xl border-primary01 flex justify-center'
             : 'bg-primary01 border w-10 h-10 rounded-xl border-primary01 flex justify-center'
         }`}
-        onClick={() => onClick()}
+        onClick={() => onChange(!isChecked)}
       >
-        <img src="/assets/Survey/labelcheck.svg"></img>
+        <img src="/assets/Survey/labelcheck.svg" alt="img" />
       </div>
     </div>
   );

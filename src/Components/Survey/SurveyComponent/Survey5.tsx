@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import Input2 from '../../../Components/Survey/Input/Input2';
 import Label3 from '../Label/Label3';
+import { useDispatch } from 'react-redux';
+import { setSurveyFourth } from '../../../redux/slices/surveySlice';
 
 interface Survey5Props {
   onNextButtonClick: (nextStep: number) => void;
 }
 
 function Survey5({ onNextButtonClick }: Survey5Props) {
+  const dispatch = useDispatch();
+
   const handleButtonClick = () => {
     onNextButtonClick(6);
   };
@@ -29,16 +32,23 @@ function Survey5({ onNextButtonClick }: Survey5Props) {
   const genderOptions = ['남성', '여성', '기타'];
   const ageOptions = ['20', '30', '40', '50', '60', '70'];
 
+  dispatch(
+    setSurveyFourth({
+      age: Number(ageClicked),
+      gender: genderClicked === '남성' ? 1 : genderClicked === '여성' ? 2 : 3,
+    }),
+  );
+
   return (
     <div>
-      <div className="survey w-full h-4/6 flex">
+      <div className="flex w-full survey h-4/6">
         <div className="box1 m-14">
-          <div className="question flex">
+          <div className="flex question">
             <p className="text-[18px] font-semibold">
               6. 고객님의 성별을 알려주세요.
             </p>
           </div>
-          <div className="click mt-6">
+          <div className="mt-6 click">
             {genderOptions.map((option, index) => (
               <Input2
                 key={index}
@@ -50,12 +60,12 @@ function Survey5({ onNextButtonClick }: Survey5Props) {
           </div>
         </div>
         <div className="box1 m-14">
-          <div className="question flex">
+          <div className="flex question">
             <p className="text-[18px] font-semibold">
               7. 고객님의 나이대를 알려주세요.
             </p>
           </div>
-          <div className="click mt-6 flex gap-8">
+          <div className="flex gap-8 mt-6 click">
             {ageOptions.map((option, index) => (
               <Label3
                 key={index}
@@ -67,7 +77,7 @@ function Survey5({ onNextButtonClick }: Survey5Props) {
           </div>
         </div>
       </div>
-      <div className="button flex">
+      <div className="flex button">
         <button
           className="hover:opacity-80 w-[240px] h-[51px] bg-[#B3B3B3] rounded-[50px] text-white ml-[315px] mt-[60px] flex justify-center py-3"
           onClick={PrevButtonClick}

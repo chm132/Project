@@ -67,15 +67,15 @@ function HomePage() {
       {step === 2 && !isNotFirstEntered ? (
         <>
           <ToolTip step="second">
-            <Row title="올래 인기교육" data="popular" />
-            <Row title="지금 막 뜬 교육" data="recent" />
+            <Row title="올래 인기교육" filter="views" />
+            <Row title="지금 막 뜬 교육" filter="createdAt" />
           </ToolTip>
           <section ref={tooltipRefs[1]} />
         </>
       ) : (
         <>
-          <Row title="올래 인기교육" data="popular" />
-          <Row title="지금 막 뜬 교육" data="recent" />
+          <Row title="올래 인기교육" filter="views" />
+          <Row title="지금 막 뜬 교육" filter="createdAt" />
         </>
       )}
       {step === 3 && !isNotFirstEntered && (

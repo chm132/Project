@@ -1,7 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import Menu from './Menu';
+import { useState } from 'react';
+// import { useDebounce } from '../../utils/useDebounce';
+// import { useGetHeaderSearchQuery } from '../../redux/apis/categoryApi';
 
 const Header = () => {
+  const [keyword, setKeyword] = useState('');
+
+  // 추후 검색 기능
+  // const enteredKeyword = useDebounce(keyword, 500);
+
+  // const { data, error } = useGetHeaderSearchQuery(keyword);
+
+  // console.log(data);
+
   const navigate = useNavigate();
   return (
     <header className="mt-10 mb-6 px-28">
@@ -27,6 +39,8 @@ const Header = () => {
             }}
             type="text"
             placeholder="배우고 싶은 분야가 있나요? 제목/강사명/수업 내용으로 검색해 보세요!"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
           />
           <img
             src="/assets/Utils/search.svg"

@@ -1,28 +1,26 @@
-import { useState } from 'react';
-
 interface InputProps1 {
   question: string;
+  isChecked: boolean;
+  onChange: (isChecked: boolean) => void;
 }
 
-const Input1 = ({ question }: InputProps1) => {
-  const [clicked, setClicked] = useState(false);
-  const onClick = () => setClicked(!clicked);
-
+const Input1 = ({ question, isChecked, onChange }: InputProps1) => {
   return (
     <div
       className={`${
-        !clicked
+        !isChecked
           ? 'hover:bg-primary01 flex justify-between px-3 py-3 rounded-2xl border text-[#666666] hover:text-white mt-[10px] w-96 h-[49px] text-[14px]'
           : ' bg-primary01 text-white flex justify-between px-3 py-3 rounded-2xl border mt-[10px] w-[384px] h-[49px] text-[14px]'
       }`}
-      onClick={() => onClick()}
+      onClick={() => onChange(!isChecked)}
     >
       <p>{question}</p>
 
       <img
-        className={`${!clicked ? 'hidden' : ''}`}
+        className={`${!isChecked ? 'hidden' : ''}`}
         src="/assets/Survey/checkimg.svg"
-      ></img>
+        alt="img"
+      />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import stepReducer from './slices/stepSlice';
 import currentUserReducer from './slices/currentUserSlice';
 import nonUserReducer from './slices/nonUserSlice';
+import surveyReducer from './slices/surveySlice';
 import storage from 'redux-persist/lib/storage/session';
 import persistReducer from 'redux-persist/es/persistReducer';
 import {
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   step: stepReducer,
   currentUser: currentUserReducer,
   nonUser: nonUserReducer,
+  survey: surveyReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

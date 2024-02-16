@@ -9,7 +9,9 @@ const DetailPage = () => {
   const communityId = Number(useParams().communityId) || 0;
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useGetDetailCommunityQuery(communityId);
+  const { data, isLoading, error } = useGetDetailCommunityQuery(communityId, {
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
 

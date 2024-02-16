@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import ShortMenu from './ShortMenu';
+import { useNavigate } from 'react-router-dom';
 
 const WideMenu = () => {
+  const navigate = useNavigate();
   const [showClass, setShowClass] = useState(false);
 
   return (
@@ -30,23 +32,84 @@ const WideMenu = () => {
         </div>
 
         <div className="w-64 border-r h-[286px] p-8">
-          <p className="cursor-pointer font-semibold text-[#1A1A1A] w-fit">
+          <p
+            className="cursor-pointer font-semibold text-[#1A1A1A] w-fit"
+            onClick={() => navigate('/community')}
+          >
             소통하러 올래
           </p>
           <ul className="flex flex-col gap-3 font-medium text-[#666666] text-sm mt-8">
-            <li className="cursor-pointer w-fit">궁금해요</li>
-            <li className="cursor-pointer w-fit">같이해요</li>
+            <li
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                navigate('/community', {
+                  state: {
+                    category: 'QUESTION',
+                  },
+                })
+              }
+            >
+              궁금해요
+            </li>
+            <li
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                navigate('/community', {
+                  state: {
+                    category: 'TOGETHER',
+                  },
+                })
+              }
+            >
+              같이해요
+            </li>
           </ul>
         </div>
 
         <div className="w-64 border-r h-[286px] p-8">
-          <p className="cursor-pointer font-semibold text-[#1A1A1A] w-fit">
+          <p
+            className="cursor-pointer font-semibold text-[#1A1A1A] w-fit"
+            onClick={() => navigate('/news')}
+          >
             올래 생활뉴스
           </p>
           <ul className="flex flex-col gap-3 font-medium text-[#666666] text-sm mt-8">
-            <li className="cursor-pointer w-fit">공지사항</li>
-            <li className="cursor-pointer w-fit">건강정보</li>
-            <li className="cursor-pointer w-fit">생활정보</li>
+            <li
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                navigate('/news', {
+                  state: {
+                    category: 'BOARD',
+                  },
+                })
+              }
+            >
+              공지사항
+            </li>
+            <li
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                navigate('/news', {
+                  state: {
+                    category: 'HEALTH',
+                  },
+                })
+              }
+            >
+              건강정보
+            </li>
+            <li
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                navigate('/news', {
+                  state: {
+                    category: 'LIFE',
+                  },
+                })
+              }
+            >
+              생활정보
+            </li>
             <li className="cursor-pointer w-fit">취업정보</li>
           </ul>
         </div>

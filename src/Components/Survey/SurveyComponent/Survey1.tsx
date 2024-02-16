@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-
-type OnNextButtonClickType = (nextStep: number) => void;
-
 interface Survey1Props {
-  onNextButtonClick: OnNextButtonClickType;
+  onNextButtonClick: (nextStep: number) => void;
 }
 
 function Survey1({ onNextButtonClick }: Survey1Props) {
@@ -23,7 +18,11 @@ function Survey1({ onNextButtonClick }: Survey1Props) {
         className=" hover:opacity-80 relative top-[36px] left-[130px] w-[271px] h-[51px] bg-primary01 rounded-[50px] text-white flex justify-center py-3"
       >
         <p className="font-medium">설문 시작하기</p>
-        <img className=" px-1 py-1" src="/assets/Survey/nextimg.svg"></img>
+        <img
+          className="px-1 py-1 "
+          src="/assets/Survey/nextimg.svg"
+          alt="img"
+        />
       </button>
     </div>
   );

@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TimeLine from '../../Components/TimeLine';
 import { categoryMapping } from '../CategoryPage/page';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Survey1 from '../../Components/Survey/SurveyComponent/Survey1';
 import Survey2 from '../../Components/Survey/SurveyComponent/Survey2';
 import Survey3 from '../../Components/Survey/SurveyComponent/Survey3';
 import Survey4 from '../../Components/Survey/SurveyComponent/Survey4';
 import Survey5 from '../../Components/Survey/SurveyComponent/Survey5';
 import Survey6 from '../../Components/Survey/SurveyComponent/Survey6';
-import ProgressBar from '../../Components/Survey/SurveyComponent/ProgressBar';
 
-const SurveyComponents = [Survey1, Survey2, Survey3, Survey4, Survey5, Survey6];
+import ProgressBar from '../../Components/Survey/SurveyComponent/ProgressBar';
+import Result from '../../Components/Survey/SurveyComponent/Result';
+
+const SurveyComponents = [
+  Survey1,
+  Survey2,
+  Survey3,
+  Survey4,
+  Survey5,
+  Survey6,
+  Result,
+];
 
 const SurveyPage = () => {
   const categoryName = useParams()?.category || '스마트폰';
