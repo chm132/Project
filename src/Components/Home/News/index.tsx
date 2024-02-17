@@ -31,15 +31,7 @@ const News = () => {
         {newsData.map((news, index) => (
           <div
             key={news.id}
-            style={{
-              display: 'flex',
-              width: '563px',
-              height: '119px',
-              padding: '8px',
-              overflow: 'hidden',
-              transition: 'all',
-              cursor: 'pointer',
-            }}
+            className="flex  gap-1 p-2 overflow-hidden transition-all cursor-pointer"
             onClick={() => navigate(`/news/${news.id}`)}
           >
             <img
@@ -58,16 +50,7 @@ const News = () => {
                 marginLeft: '12px',
               }}
             >
-              <p
-                style={{
-                  height: '17px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#EC9D26',
-                  lineHeight: '16.71px',
-                  marginBottom: '8px',
-                }}
-              >
+              <p className="text-primary01">
                 {news.category === 'BOARD'
                   ? '공지사항'
                   : news.category === 'HEALTH'
@@ -76,33 +59,11 @@ const News = () => {
                       ? '생활정보'
                       : '취업정보'}
               </p>
-              <p
-                style={{
-                  width: '443px',
-                  height: '21px',
-                  color: '#1A1A1A',
-                  fontSize: '18px',
-                  lineHeight: '21.48px',
-                  fontWeight: '500',
-
-                  marginBottom: '8px',
-                  cursor: 'pointer',
-                }}
-                className="hover:underline hover:decoration-4 w-fit"
-              >
+              <p className="text-lg font-semibold hover:underline hover:decoration-4 w-fit">
                 {news.title}
               </p>
-              <p
-                style={{
-                  height: '19px',
-                  width: '432px',
-                  fontSize: '16px',
-                  marginBottom: '6px',
-                  color: '#808080',
-                  lineHeight: '19.09px',
-                }}
-              >
-                {truncate(news.content, 38)}
+              <p className="text-lg text-[#B3B3B3]">
+                {truncate(news.content, 37)}
               </p>
               <section
                 className="author"

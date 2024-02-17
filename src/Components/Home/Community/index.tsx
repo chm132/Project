@@ -25,8 +25,8 @@ const Community = () => {
       <div className="flex flex-col gap-5">
         {communityData.map((data) => (
           <div
-            key={data.id}
-            className="flex flex-col gap-1 p-2 overflow-hidden transition-all cursor-pointer"
+            key={data.id}className="flex flex-col gap-1 p-2 overflow-hidden transition-all cursor-pointer"
+            
             onClick={() => navigate(`/community/${data.id}`)}
           >
             <p className="text-primary01">

@@ -1,0 +1,22 @@
+.custom-prev,
+.custom-next {
+  width: 50px;
+  height: 50px;
+  background-color: #ec9d26;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-prev {
+  left: 20px; /* 왼쪽 여백 조정 */
+}
+
+.custom-next {
+  right: 20px; /* 오른쪽 여백 조정 */
+}
