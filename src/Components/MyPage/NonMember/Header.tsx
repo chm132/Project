@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom';
+// import {
+//   useGetCompletedLessonsMutation,
+//   useGetLessonsMutation,
+// } from '../../../redux/apis/guestApi';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../../../redux/store';
 
 interface HeaderProps {
   step: number;
 }
 
 const Header = ({ step }: HeaderProps) => {
+  // const phoneNum = useSelector((state: RootState) => state.nonUser.phoneNum);
+  // const [getLessons, lessonResults] = useGetLessonsMutation();
+  // const [getCompletedLessons, completedLessonsResults] =
+  //   useGetCompletedLessonsMutation();
+
   return (
     <section className="h-20 px-[530px] bg-white">
       <ul className="grid items-center grid-cols-2 text-lg text-center font-meduim">

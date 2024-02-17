@@ -1,18 +1,38 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Timer } from './Timer';
+import { generateRandomNumber } from '../../../../utils/generateRandomNumber';
+import { useDispatch } from 'react-redux';
+import { setPhoneNum } from '../../../../redux/slices/joinPhoneSlice';
 
 const FirstArea = () => {
-  const [phoneNum, setPhoneNum] = useState('');
-  const [authNum, setAuthNum] = useState('');
+  const dispatch = useDispatch();
+
+  const [enteredPhoneNum, setEnteredPhoneNum] = useState('');
+  const [authNum, setAuthNum] = useState(generateRandomNumber());
+  const [enteredAuthNum, setEnteredAuthNum] = useState(''); // 콘솔에 찍힌 randomNum과 일치하면 통과하는 걸루
+
   const [showNext, setShowNext] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
   const navigate = useNavigate();
 
+  const getAuthNumHandler = () => {
+    if (enteredPhoneNum.length > 10) {
+      // 번호를 다 치고 나면 랜덤 authNum 발급
+      // setAuthNum(generateRandomNumber());
+      console.log(authNum);
+    }
+    setShowNext(true);
+  };
+
   // 인증번호 올바른지 validate 기능 향후 추가
   const authNumHandler = () => {
-    setDisabled(false);
+    if (enteredAuthNum === authNum) {
+      console.log('인증확인되었습니다.');
+      dispatch(setPhoneNum({ phoneNum: enteredPhoneNum }));
+      setDisabled(false);
+    }
   };
 
   const nextHandler = () => {
@@ -27,14 +47,14 @@ const FirstArea = () => {
           <input
             className="w-[70%] px-6 py-3 bg-[#F2F2F2] rounded-lg outline-none transition placeholder-[#B3B3B3]"
             placeholder="-없이 숫자만 입력해주세요"
-            value={phoneNum}
-            onChange={(e) => setPhoneNum(e.target.value)}
+            value={enteredPhoneNum}
+            onChange={(e) => setEnteredPhoneNum(e.target.value)}
           />
           <button
             className={`font-medium ${
-              phoneNum ? 'bg-primary01 text-white' : 'bg-[#E6E6E6]'
+              enteredPhoneNum ? 'bg-primary01 text-white' : 'bg-[#E6E6E6]'
             } rounded-lg px-5 py-3 w-32 transition-all`}
-            onClick={() => setShowNext(true)}
+            onClick={getAuthNumHandler}
           >
             인증번호 전송
           </button>
@@ -53,12 +73,12 @@ const FirstArea = () => {
             <input
               className="w-[70%] px-6 py-3 bg-[#F2F2F2] rounded-lg outline-none transition placeholder-[#B3B3B3]"
               placeholder="숫자 6자리를 입력해주세요"
-              value={authNum}
-              onChange={(e) => setAuthNum(e.target.value)}
+              value={enteredAuthNum}
+              onChange={(e) => setEnteredAuthNum(e.target.value)}
             />
             <button
               className={`font-medium ${
-                authNum ? 'bg-primary01 text-white' : 'bg-[#E6E6E6]'
+                enteredAuthNum ? 'bg-primary01 text-white' : 'bg-[#E6E6E6]'
               } rounded-lg px-5 py-3 w-32 transition-all`}
               onClick={authNumHandler}
             >

@@ -1,3 +1,4 @@
+import { useGetLessonsQuery } from '../../../../redux/apis/myPageApi';
 import Lesson from '../../Lesson';
 
 export const Lessons = [
@@ -40,6 +41,9 @@ export const Lessons = [
 ];
 
 const LessonApply = () => {
+  // const { data } = useGetLessonsQuery();
+  // console.log(data);
+
   return (
     <div className="flex flex-col items-center gap-10 px-32 py-10">
       {Lessons.map((lesson, index) => (

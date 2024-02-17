@@ -1,24 +1,71 @@
 import { useState, useEffect, useRef } from 'react';
 import { Toggle } from './Toggle';
 import React, { Dispatch, SetStateAction } from 'react';
+import CitySelector from './citySelector';
 
-interface Profile {
-  name: string;
-  gender: string;
-  email: string;
-  password: string;
-  city: string;
-  district: string;
-  neighborhood: string;
-  birthYear: string;
-  isMail: boolean;
-  isSms: boolean;
-}
 const currentYear = new Date().getFullYear();
 const startDecade = 1900;
 const decades = Math.ceil((currentYear - startDecade + 1) / 10);
 
 const ThirdArea = () => {
+  const cityDetails = {
+    서울특별시: {
+      노원구: ['중계동', '상계동', '월계동', '하계동'],
+      서초구: ['서초동', '양재동', '잠원동', '반포동'],
+      강남구: ['역삼동', '삼성동', '청담동', '신사동'],
+      도봉구: ['도봉동', '방학동', '쌍문동', '창동'],
+      송파구: ['잠실동', '가락동', '문정동', '방이동'],
+      강서구: ['등촌동', '화곡동', '발산동', '우장산동'],
+    },
+    경기도: {
+      구리시: ['인창동', '토평동', '교문동', '수택동'],
+      수원시: ['장안구', '영통구', '권선구', '팔달구'],
+      성남시: ['수정구', '분당구', '중원구', '수정구'],
+      안양시: ['동안구', '만안구', '동안구', '만안구'],
+      평택시: ['서정동', '비전동', '서탄면', '배양동'],
+      의정부시: ['의정부1동', '의정부2동', '의정부3동', '의정부4동'],
+    },
+    부산광역시: {
+      사하구: ['괴정동', '당리동', '하단동', '장림동'],
+      수영구: ['망미동', '민락동', '남천동', '마린시티'],
+      진구: ['부전동', '전포동', '개금동', '당감동'],
+      동구: ['초량동', '수정동', '좌천동', '범일동'],
+      금정구: ['구서동', '금사동', '부곡동', '청룡동'],
+      해운대구: ['우동', '좌동', '중동', '송정동'],
+    },
+    인천광역시: {
+      부평구: ['부평동', '청천동', '산곡동', '십정동'],
+      남동구: ['간석동', '논현동', '도화동', '구월동'],
+      연수구: ['연수동', '동춘동', '옥련동', '송도동'],
+      미추홀구: ['주안동', '도화동', '구월동', '청라동'],
+      계양구: ['효성동', '작전동', '동양동', '임학동'],
+      서구: ['검단동', '연희동', '마전동', '가좌동'],
+    },
+    울산광역시: {
+      남구: ['삼산동', '신정동', '달동', '무거동'],
+      동구: ['대송동', '서부동', '남목동', '화정동'],
+      북구: ['염포동', '송정동', '양정동', '삼산동'],
+      중구: ['남외동', '북외동', '신암동', '내외동'],
+    },
+    대구광역시: {
+      남구: ['봉덕동', '대명동', '이천동', '수창동'],
+      동구: ['봉무동', '신암동', '방촌동', '수송동'],
+      서구: ['내당동', '비산동', '평리동', '상중이동'],
+      북구: ['칠성동', '태전동', '동호동', '산격동'],
+    },
+    광주광역시: {
+      동구: ['충장로', '용봉동', '서석동', '지산동'],
+      서구: ['양동', '동천동', '치평동', '풍암동'],
+      남구: ['주월동', '방림동', '송하동', '월산동'],
+      북구: ['문흥동', '오룡동', '일곡동', '충효동'],
+    },
+    충청남도: {
+      천안시: ['동남구', '서북구', '백석동', '불당동'],
+      공주시: ['공주시1', '공주시2', '공주시3', '공주시4'],
+      보령시: ['보령시1', '보령시2', '보령시3', '보령시4'],
+      아산시: ['아산시1', '아산시2', '아산시3', '아산시4'],
+    },
+  };
   const [profile, setProfile] = useState({
     name: '',
     gender: '',
@@ -45,27 +92,21 @@ const ThirdArea = () => {
     isMail: profile.isMail,
     isSms: profile.isSms,
   };
-  const [password, setPassword] = useState('');
+
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const [isMatching, setIsMatching] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
-  const confirmPasswordRef = useRef<HTMLInputElement>(null);
-  const [selectedCity, setSelectedCity] = useState('');
-  const [selectedDistrict, setSelectedDistrict] = useState('');
-  const [selectedNeighborhood, setSelectedNeighborhood] = useState('');
 
-  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      city: e.target.value,
-      district: '',
-      neighborhood: '',
-    }));
-    setSelectedCity(e.target.value);
-    setSelectedDistrict('');
-    setSelectedNeighborhood('');
-  };
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const genderSelectRef = useRef<HTMLSelectElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const emailDomainSelectRef = useRef<HTMLSelectElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
+  const birthYearSelectRef = useRef<HTMLSelectElement>(null);
+
+  const citySelectorRef = useRef<HTMLDivElement>(null);
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
     setProfile((prevProfile) => ({
@@ -82,47 +123,91 @@ const ThirdArea = () => {
       emailAddress: `${profile.email}@${newDomain}`,
     }));
   };
-  const handleNeighborhoodChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    const selectedNeighborhood = e.target.value;
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      neighborhood: selectedNeighborhood,
-    }));
-    setSelectedNeighborhood(selectedNeighborhood);
-  };
-  const handleDistrictChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      district: e.target.value,
-      neighborhood: '',
-    }));
-    setSelectedDistrict(e.target.value);
-    setSelectedNeighborhood('');
-  };
 
   const handleSubmit = () => {
+    // 필수 입력 필드 확인
+    if (!profile.name) {
+      nameInputRef.current?.focus();
+      return;
+    }
+    if (!profile.gender) {
+      genderSelectRef.current?.focus();
+      return;
+    }
+    if (!profile.email) {
+      emailInputRef.current?.focus();
+      return;
+    }
+    if (!profile.emailDomain) {
+      emailDomainSelectRef.current?.focus();
+      return;
+    }
+    if (!profile.password) {
+      passwordInputRef.current?.focus();
+      return;
+    }
+    if (!confirmPassword) {
+      confirmPasswordInputRef.current?.focus();
+      return;
+    }
+
+    // 선택된 지역 정보 확인
+    const { current: citySelector } = citySelectorRef;
+    if (citySelector) {
+      const provinceSelect =
+        citySelector.querySelector<HTMLSelectElement>('select:first-child');
+      const citySelect = citySelector.querySelector<HTMLSelectElement>(
+        'select:nth-child(2)',
+      );
+      const neighborhoodSelect =
+        citySelector.querySelector<HTMLSelectElement>('select:last-child');
+
+      if (provinceSelect && provinceSelect.value === '') {
+        provinceSelect.focus();
+        return;
+      }
+      if (citySelect && citySelect.value === '') {
+        citySelect.focus();
+        return;
+      }
+      if (neighborhoodSelect && neighborhoodSelect.value === '') {
+        neighborhoodSelect.focus();
+        return;
+      }
+    } else {
+      // citySelectorRef가 존재하지 않는 경우 처리
+      // 여기에 필요한 동작 추가
+      return;
+    }
+
+    // 생년월일 확인
+    if (!profile.birthYear) {
+      birthYearSelectRef.current?.focus();
+      return;
+    }
+
+    // 비밀번호 일치 및 형식 확인
     console.log('ProfileData:', profileData);
     if (!profile.password || !confirmPassword) {
-      setMessage('비밀번호를 입력해주세요.');
       setIsMatching(false);
     } else if (profile.password !== confirmPassword) {
-      setMessage('비밀번호가 일치하지 않습니다.');
       setIsMatching(false);
     } else {
       const regex =
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
       if (!regex.test(profile.password)) {
         setIsValidPassword(false);
-        confirmPasswordRef.current?.focus();
+        passwordInputRef.current?.focus();
       } else {
         setMessage('비밀번호가 확인되었습니다.');
         setIsMatching(true);
         setIsValidPassword(true);
       }
     }
+
+    // 추가 작업 수행
   };
+
   const handleProfileIsMailChange = (newValue: SetStateAction<boolean>) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -143,8 +228,16 @@ const ThirdArea = () => {
   const handleConfirmPasswordChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setConfirmPassword(e.target.value);
+    const value = e.target.value;
+    setConfirmPassword(value);
   };
+  useEffect(() => {
+    if (confirmPassword !== '' && confirmPassword !== profile.password) {
+      setIsMatching(false);
+    } else {
+      setIsMatching(true);
+    }
+  }, [confirmPassword, profile.password]);
   return (
     <div>
       <div style={{ marginLeft: '100px', marginTop: '-32px' }}>
@@ -231,6 +324,7 @@ const ThirdArea = () => {
           >
             <div style={{ position: 'relative' }}>
               <input
+                ref={nameInputRef}
                 type="text"
                 name="name"
                 value={profile.name}
@@ -262,6 +356,7 @@ const ThirdArea = () => {
             </div>
             <div style={{ position: 'relative' }}>
               <select
+                ref={genderSelectRef}
                 id="gender"
                 name="gender"
                 value={profile.gender}
@@ -304,6 +399,7 @@ const ThirdArea = () => {
             <div>
               <div style={{ position: 'relative' }}>
                 <input
+                  ref={emailInputRef}
                   id="email"
                   type="text"
                   name="email"
@@ -322,6 +418,7 @@ const ThirdArea = () => {
                   @
                 </span>
                 <select
+                  ref={emailDomainSelectRef}
                   name="emailDomain"
                   value={profile.emailDomain}
                   onChange={handleEmailDomainChange}
@@ -371,6 +468,7 @@ const ThirdArea = () => {
               }}
             >
               <input
+                ref={passwordInputRef}
                 type="password"
                 id="password"
                 name="password"
@@ -379,7 +477,6 @@ const ThirdArea = () => {
                 onChange={(e) =>
                   setProfile({ ...profile, password: e.target.value })
                 }
-                ref={confirmPasswordRef}
                 placeholder="영문, 숫자, 특수기호 포함 8글자 이상으로 설정해 주세요."
                 style={{
                   border: '1px solid #CCCCCC',
@@ -423,6 +520,7 @@ const ThirdArea = () => {
               }}
             >
               <input
+                ref={confirmPasswordInputRef}
                 type="password"
                 id="confirmPassword"
                 name="confirmPassword"
@@ -447,10 +545,13 @@ const ThirdArea = () => {
                   backgroundPosition: 'left 16px center',
                 }}
               />
-              {message && (
-                <p style={{ color: isMatching ? '#17784F' : '#E35858' }}>
-                  {message}
+              {!isMatching && (
+                <p style={{ color: '#E35858' }}>
+                  비밀번호가 일치하지 않습니다.
                 </p>
+              )}
+              {isMatching && profile.password && confirmPassword && (
+                <p style={{ color: '#17784F' }}>비밀번호가 확인되었습니다.</p>
               )}
               <span
                 style={{
@@ -465,179 +566,25 @@ const ThirdArea = () => {
                 *
               </span>
             </div>
-
+            <CitySelector
+              cityDetails={cityDetails}
+              ref={citySelectorRef}
+              onSelect={(
+                city: string,
+                district: string,
+                neighborhood: string,
+              ) => {
+                setProfile({
+                  ...profile,
+                  city,
+                  district,
+                  neighborhood,
+                });
+              }}
+            />
             <div style={{ display: 'flex', position: 'relative' }}>
               <select
-                id="city"
-                name="city"
-                value={profile.city}
-                required
-                onChange={handleCityChange}
-                style={{
-                  border: '1px solid #CCCCCC',
-                  borderRadius: '16px',
-                  width: '208px',
-                  height: '49px',
-                  fontSize: '14px',
-                  marginRight: '24px',
-                  paddingTop: 'auto',
-                  paddingLeft: '20px',
-                  appearance: 'none',
-                  backgroundImage: `url('/assets/Survey/graycheck.svg')`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 23px center',
-                }}
-              >
-                <option
-                  style={{
-                    fontSize: '14px',
-                    textAlign: 'left',
-                    lineHeight: '16.71px',
-
-                    paddingLeft: '20px',
-                  }}
-                >
-                  시/도
-                </option>
-                <option
-                  value="seoul"
-                  style={{
-                    border: '1px solid #CCCCCC',
-                    borderRadius: '16px',
-                    width: '208px',
-                    height: '49px',
-                  }}
-                >
-                  서울
-                </option>
-                <option
-                  value="busan"
-                  style={{
-                    border: '1px solid #CCCCCC',
-                    borderRadius: '16px',
-                    width: '208px',
-                    height: '49px',
-                  }}
-                >
-                  부산
-                </option>
-              </select>
-              <select
-                name="district"
-                id="district"
-                required
-                value={selectedDistrict}
-                onChange={handleDistrictChange}
-                style={{
-                  border: '1px solid #CCCCCC',
-                  borderRadius: '16px',
-                  width: '208px',
-                  height: '49px',
-                  marginRight: '24px',
-                  paddingTop: 'auto',
-                  paddingLeft: '20px',
-                  fontSize: '14px',
-
-                  appearance: 'none',
-                  backgroundImage: `url('/assets/Survey/graycheck.svg')`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 23px center',
-                }}
-              >
-                <option value="" disabled>
-                  시/군/구
-                </option>
-                {selectedCity === 'seoul' ? (
-                  <>
-                    <option value="gangnam">강남구</option>
-                    <option value="mapo">마포구</option>
-                    <option value="jongno">종로구</option>
-                  </>
-                ) : selectedCity === 'busan' ? (
-                  <>
-                    <option value="haeundae">해운대구</option>
-                    <option value="saha">사하구</option>
-                    <option value="dongnae">동래구</option>
-                  </>
-                ) : null}
-              </select>
-              <select
-                name="neighborhood"
-                id="neighborhood"
-                required
-                value={selectedNeighborhood}
-                onChange={handleNeighborhoodChange}
-                style={{
-                  border: '1px solid #CCCCCC',
-                  borderRadius: '16px',
-                  width: '208px',
-                  height: '49px',
-                  appearance: 'none',
-                  paddingTop: 'auto',
-                  paddingLeft: '20px',
-                  fontSize: '14px',
-
-                  backgroundImage: `url('/assets/Survey/graycheck.svg')`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 23px center',
-                }}
-              >
-                <option value="" disabled>
-                  읍/면/동
-                </option>
-                {selectedDistrict === 'gangnam' ? (
-                  <>
-                    <option value="apgujeong">압구정동</option>
-                    <option value="nonhyeon">논현동</option>
-                    <option value="cheongdam">청담동</option>
-                  </>
-                ) : selectedDistrict === 'mapo' ? (
-                  <>
-                    <option value="hongdae">홍대</option>
-                    <option value="sinchon">신촌</option>
-                    <option value="hapjeong">합정</option>
-                  </>
-                ) : selectedDistrict === 'jongno' ? (
-                  <>
-                    <option value="jongno1">종로1가</option>
-                    <option value="jongno2">종로2가</option>
-                    <option value="jongno3">종로3가</option>
-                  </>
-                ) : selectedDistrict === 'haeundae' ? (
-                  <>
-                    <option value="hakdong">학동</option>
-                    <option value="ujeong">우정</option>
-                    <option value="jangsan">장산</option>
-                  </>
-                ) : selectedDistrict === 'saha' ? (
-                  <>
-                    <option value="sahadong1">사하동1가</option>
-                    <option value="sahadong2">사하동2가</option>
-                    <option value="sahadong3">사하동3가</option>
-                  </>
-                ) : selectedDistrict === 'dongnae' ? (
-                  <>
-                    <option value="dongnaedong">동래동</option>
-                    <option value="choryangdong">초량동</option>
-                    <option value="suyeongdong">수영동</option>
-                  </>
-                ) : null}
-              </select>
-              <span
-                style={{
-                  position: 'absolute',
-                  left: '-120px',
-                  top: '10px',
-                  fontSize: '18px',
-                  color: '#EC9D26',
-                }}
-              >
-                {' '}
-                *
-              </span>
-            </div>
-            <div style={{ display: 'flex', position: 'relative' }}>
-              <select
+                ref={birthYearSelectRef}
                 id="birthYear"
                 name="birthYear"
                 value={profile.birthYear}

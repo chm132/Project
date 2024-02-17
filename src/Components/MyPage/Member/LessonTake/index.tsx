@@ -1,7 +1,12 @@
+import { useGetCompletedLessonsQuery } from '../../../../redux/apis/myPageApi';
 import Lesson from '../../Lesson';
 import { Lessons } from '../LessonApply';
 
 const LessonTake = () => {
+  // const { data } = useGetCompletedLessonsQuery();
+
+  // console.log(data);
+
   return (
     <div className="flex flex-col items-center gap-10 px-32 py-10">
       {Lessons.map((lesson, index) => (

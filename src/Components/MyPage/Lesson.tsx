@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import { formatTime } from '../../utils/dayjs';
 
 interface LessonProps {
-  id: number;
-  category: string;
+  id?: number;
+  category?: string;
   status?: string;
   createdAt: string;
   title: string;
@@ -41,17 +40,17 @@ const Lesson = ({
     <div className="relative">
       <div className="flex items-center gap-4">
         <section className="flex items-center justify-center w-16 h-16 rounded-full bg-primary01">
-          <img
+          {/* <img
             src={`/assets/Category/${category}.svg`}
             alt="category"
             className="w-10 h-10"
-          />
+          /> */}
         </section>
         <section>
           <section className="flex items-center gap-2 mb-1">
-            <p className="font-semibold text-xl text-[#333333]">
+            {/* <p className="font-semibold text-xl text-[#333333]">
               {renderCategoryInKorean(category)}
-            </p>
+            </p> */}
             {status && (
               <span className="bg-white rounded-[32px] py-2 px-3">
                 <p

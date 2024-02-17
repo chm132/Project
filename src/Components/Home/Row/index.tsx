@@ -6,7 +6,8 @@ import 'swiper/css/navigation';
 
 import Header from '../Header';
 import { truncate } from '../../../utils/truncate';
-import { useGetOrderByLessonsQuery } from '../../../redux/apis/categoryApi';
+import { useGetOrderByLessonsQuery } from '../../../redux/apis/lessonApi';
+import { useNavigate } from 'react-router-dom';
 
 interface RowProps {
   title: string;
@@ -14,6 +15,7 @@ interface RowProps {
 }
 
 const Row = ({ title, filter }: RowProps) => {
+  const navigate = useNavigate();
   let content;
 
   const { data, isLoading, error } = useGetOrderByLessonsQuery(filter, {
@@ -43,10 +45,13 @@ const Row = ({ title, filter }: RowProps) => {
         <div>
           {RowData?.map((d, index) => (
             <SwiperSlide key={index}>
-              <div className="w-[95%] h-[95%] rounded-sm overflow-hidden transition-all cursor-pointer">
+              <div
+                className="w-[95%] h-[95%] rounded-sm overflow-hidden transition-all cursor-pointer"
+                onClick={() => navigate(`/lesson?lessonId=${d.lessonId}`)}
+              >
                 <img
-                  src={d.filePath}
-                  alt={d.filePath}
+                  src={d.imageUrl}
+                  alt={d.imageUrl}
                   className="object-cover w-full h-40 mt-10 rounded-lg"
                 />
                 <div className="font-medium">

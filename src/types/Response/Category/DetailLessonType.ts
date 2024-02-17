@@ -8,6 +8,7 @@ export interface DetailLessonResponse {
   result: {
     title: string;
     description: string;
+    categoryId: number;
     lessonType: string;
     supplies: string;
     price: number;
@@ -24,5 +25,7 @@ export interface DetailLessonResponse {
     limitCount: number;
     currentCount: number;
     lessonTeacherList: TeacherList[];
+    applyStatus: boolean;
+    likeStatus: boolean;
   };
 }

@@ -1,8 +1,9 @@
 interface RowList {
+  lessonId: number;
   title: string;
   currentCount: number;
   place: string;
-  filePath: string;
+  imageUrl: string;
 }
 
 export interface RowResponse {

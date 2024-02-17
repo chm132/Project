@@ -1,6 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom';
 import TimeLine from '../../Components/TimeLine';
-import { useGetCategoryLessonsQuery } from '../../redux/apis/categoryApi';
+import { useGetCategoryLessonsQuery } from '../../redux/apis/lessonApi';
 import FilterBox from '../../Components/Announcement/FilterBox';
 import LessonCard from '../../Components/Announcement/LessonCard';
 import Pagination from '../../Components/Pagination';

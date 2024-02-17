@@ -12,6 +12,7 @@ interface ParamsProps {
 
 export const categoryApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // 헤더에 붙어있는 검색기능
     getHeaderSearch: builder.query<HeaderSearchResponse, string>({
       query: (keyword) => {
         return {
@@ -20,6 +21,8 @@ export const categoryApi = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    // Row 컴포넌트 담당 기능
     getOrderByLessons: builder.query<RowResponse, string>({
       providesTags: ['Lesson'],
       query: (condition) => {
@@ -29,6 +32,8 @@ export const categoryApi = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    //
     getCategoryLessons: builder.query<CategoryLessonsResponse, ParamsProps>({
       providesTags: ['Lesson'],
       query: ({ categoryId, pageNo, keyword }) => {
@@ -57,6 +62,42 @@ export const categoryApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    // 회원일때 신청
+    postApply: builder.mutation({
+      invalidatesTags: ['Lesson'],
+      query: (lessonId) => ({
+        method: 'POST',
+        url: `lesson/${lessonId}/member`,
+        body: {},
+      }),
+    }),
+    deleteApply: builder.mutation({
+      invalidatesTags: ['Lesson'],
+      query: (lessonId) => ({
+        method: 'DELETE',
+        url: `/lesson/${lessonId}/member`,
+        body: {},
+      }),
+    }),
+
+    // 회원일떄 찜하기, 찜취소
+    postLike: builder.mutation({
+      invalidatesTags: ['Lesson'],
+      query: (lessonId) => ({
+        method: 'POST',
+        url: `/lesson/${lessonId}/like`,
+        body: {},
+      }),
+    }),
+    deleteLike: builder.mutation({
+      invalidatesTags: ['Lesson'],
+      query: (lessonId) => ({
+        method: 'DELETE',
+        url: `/lesson/${lessonId}/like`,
+        body: {},
+      }),
+    }),
+
     postSurvey: builder.mutation({
       invalidatesTags: ['Lesson'],
       query: ({ ...post }) => ({
@@ -73,5 +114,9 @@ export const {
   useGetOrderByLessonsQuery,
   useGetCategoryLessonsQuery,
   useGetDetailLessonQuery,
+  useDeleteApplyMutation,
+  usePostLikeMutation,
+  useDeleteLikeMutation,
   usePostSurveyMutation,
+  usePostApplyMutation,
 } = categoryApi;

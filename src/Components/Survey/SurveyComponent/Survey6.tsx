@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSurveyFifth } from '../../../redux/slices/surveySlice';
 import { RootState } from '../../../redux/store';
-import { usePostSurveyMutation } from '../../../redux/apis/categoryApi';
+import { usePostSurveyMutation } from '../../../redux/apis/lessonApi';
 
 interface Citydetails {
   [city: string]: {

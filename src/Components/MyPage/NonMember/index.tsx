@@ -5,7 +5,7 @@ import CheckPhone from './CheckPhone';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LessonApply from './HasNumber/LessonApply';
-import LessonTake from './HasNumber/LessonTake';
+import LessonComplete from './HasNumber/LessonComplete';
 
 const NonMember = () => {
   // 비회원의 전화번호 - default는 빈값 ''
@@ -29,7 +29,7 @@ const NonMember = () => {
       <>
         <Header step={step} />
         {step === 1 && <LessonApply />}
-        {step === 2 && <LessonTake />}
+        {step === 2 && <LessonComplete />}
       </>
     );
   } else {

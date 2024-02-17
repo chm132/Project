@@ -28,7 +28,7 @@ const ShowUser = ({
   const [isMail, setIsMail] = useState(mailAgree);
   const [isSms, setIsSms] = useState(smsAgree);
 
-  const addresses = address.split(' ');
+  const addresses = address?.split(' ');
 
   return (
     <div className="mx-[340px] rounded-3xl shadow-md bg-white mt-10 px-12 py-10">
@@ -43,11 +43,13 @@ const ShowUser = ({
           <section className="flex flex-col gap-2">
             <div className="flex items-center gap-2 font-medium">
               <p className="text-2xl">{name}</p>
-              <p className="text-lg text-[#999999]">{gender}</p>
-              <p className="text-lg text-[#999999]">{birthYear}</p>
+              <p className="text-lg text-[#999999]">
+                {gender === 'MALE' ? '남성' : '여성'}
+              </p>
+              <p className="text-lg text-[#999999]">{birthYear}년생</p>
             </div>
             <p className="text-xl text-[#808080]">{email}</p>
-            <p className="text-xl text-[#808080]">{formatPhone(phoneNum)}</p>
+            <p className="text-xl text-[#808080]">{formatPhone(phoneNum!)}</p>
           </section>
         </div>
       </div>
