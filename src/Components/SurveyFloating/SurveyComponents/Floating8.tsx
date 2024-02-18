@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setSurveyFifth } from '../../../redux/slices/surveySlice';
 import { RootState } from '../../../redux/store';
 import { usePostSurveyMutation } from '../../../redux/apis/surveyApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSurveyFifth } from '../../../redux/slices/surveySlice';
 
 interface Citydetails {
   [city: string]: {
@@ -11,7 +11,7 @@ interface Citydetails {
   };
 }
 
-export const cityDetails: Citydetails = {
+const cityDetails: Citydetails = {
   서울특별시: {
     노원구: ['중계동', '상계동', '월계동', '하계동'],
     서초구: ['서초동', '양재동', '잠원동', '반포동'],
@@ -70,15 +70,11 @@ export const cityDetails: Citydetails = {
   },
 };
 
-type OnNextButtonClickType = (nextStep: number) => void;
-
-interface Survey6Props {
-  onNextButtonClick: OnNextButtonClickType;
-}
-
-function Survey6({ onNextButtonClick }: Survey6Props) {
+function Floating8() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [postSurvey] = usePostSurveyMutation();
+
   const surveyValues = useSelector((state: RootState) => state.survey);
 
   const {
@@ -104,17 +100,14 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
       address: address,
     });
 
-    navigate('result', {
+    navigate('result/floating', {
       state: response,
     });
   };
 
-  // };
-  const PrevButtonClick = () => {
-    onNextButtonClick(5);
+  const prevHandler = () => {
+    navigate('/floating?page=7');
   };
-
-  const navigate = useNavigate();
 
   const [selectedCity, setSelectedCity] = useState('');
   const [showCities, setShowCities] = useState(false);
@@ -157,7 +150,7 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
       <div className="flex flex-col">
         <div className="gap-16 pt-14 pl-14">
           <p className="text-lg font-semibold ">
-            8. 고객님의 주소를 알려주세요.
+            10. 고객님의 주소를 알려주세요.
           </p>
           <div className="flex gap-7 w-[980px] h-[300px]">
             <div className="pt-5 flex flex-col gap-2 w-[264px] h-[250px]">
@@ -286,7 +279,7 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
         <div className="button flex mt-[-70px]">
           <button
             className="hover:opacity-80  w-[240px] h-[51px] bg-[#B3B3B3] rounded-[50px] text-white ml-[315px] mt-[60px] flex justify-center py-3"
-            onClick={PrevButtonClick}
+            onClick={prevHandler}
           >
             <img
               className="px-1 py-1 "
@@ -307,4 +300,4 @@ function Survey6({ onNextButtonClick }: Survey6Props) {
   );
 }
 
-export default Survey6;
+export default Floating8;

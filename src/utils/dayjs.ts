@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
+import { useEffect, useState } from 'react';
 
 dayjs.extend(relativeTime);
 dayjs.locale('ko');
@@ -26,4 +27,28 @@ export function formatTime(
   format = 'YYYY.MM.DD h:mm A',
 ) {
   return dayjs(time).format(format);
+}
+
+// dayjs 활용하여 원하는 시간 차이 계산
+export function useTimeDifference(startTime: string, endTime: string) {
+  const [timeDifference, setTimeDifference] = useState(0);
+
+  useEffect(() => {
+    if (startTime && endTime) {
+      // startTime과 endTime을 dayjs 객체로 변환합니다.
+      const startTimeObj = dayjs(startTime);
+      const endTimeObj = dayjs(endTime);
+
+      // endTime - startTime으로 시간 간격을 계산합니다.
+      const duration = endTimeObj.diff(startTimeObj, 'hour');
+
+      // 계산된 시간 간격을 상태로 설정합니다.
+      setTimeDifference(duration);
+    } else {
+      // startTime 또는 endTime이 없는 경우 시간 간격을 null로 설정합니다.
+      setTimeDifference(0);
+    }
+  }, [startTime, endTime]);
+
+  return timeDifference;
 }

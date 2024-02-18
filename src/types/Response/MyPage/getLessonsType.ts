@@ -3,6 +3,7 @@ interface teacherList {
 }
 
 interface appList {
+  lessonId: number;
   title: string;
   lessonStartDate: string;
   lessonEndDate: string;
@@ -10,13 +11,13 @@ interface appList {
   lessonEndTime: string;
   lessonTeacherList: teacherList[];
   place: string;
-  categoryId: number;
+  categoryName: string;
   createdAt: string;
   applicationStatus: string;
   imgUrl: string;
 }
 
-export interface GuestLessonResponse {
+export interface MyPageLessonResponse {
   code: string;
   message: string;
   result: {

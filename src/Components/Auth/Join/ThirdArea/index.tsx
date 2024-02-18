@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Toggle } from './Toggle';
 import React, { Dispatch, SetStateAction } from 'react';
 import CitySelector from './citySelector';
+import { useJoin } from '../../../../hooks/Auth/useJoin';
 
 const currentYear = new Date().getFullYear();
 const startDecade = 1900;
@@ -66,6 +67,9 @@ const ThirdArea = () => {
       아산시: ['아산시1', '아산시2', '아산시3', '아산시4'],
     },
   };
+
+  const { signUp } = useJoin();
+
   const [profile, setProfile] = useState({
     name: '',
     gender: '',
@@ -185,9 +189,6 @@ const ThirdArea = () => {
       birthYearSelectRef.current?.focus();
       return;
     }
-
-    // 비밀번호 일치 및 형식 확인
-    console.log('ProfileData:', profileData);
     if (!profile.password || !confirmPassword) {
       setIsMatching(false);
     } else if (profile.password !== confirmPassword) {
@@ -204,7 +205,7 @@ const ThirdArea = () => {
         setIsValidPassword(true);
       }
     }
-
+    signUp(profileData);
     // 추가 작업 수행
   };
 

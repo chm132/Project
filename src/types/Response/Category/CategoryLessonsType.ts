@@ -1,6 +1,7 @@
 export interface LessonList {
   lessonId: number;
   title: string;
+  gatherStartDate: string;
   gatherEndDate: string;
   lessonStartDate: string;
   lessonEndDate: string;

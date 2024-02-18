@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import ShowUser from './ShowUser';
-import ModifyUser from './ModifyUser';
+// import ModifyUser from './ModifyUser';
 import { useGetUserDetailQuery } from '../../../../redux/apis/myPageApi';
+import ModifyUser from './ModifyUser';
 
 const MyInfo = () => {
   const { data } = useGetUserDetailQuery();
@@ -9,11 +10,7 @@ const MyInfo = () => {
 
   let content;
 
-  if (showModify) {
-    content = <ModifyUser />;
-  }
-
-  if (data) {
+  if (data && !showModify) {
     const userData = data.result;
     content = (
       <ShowUser
@@ -28,6 +25,10 @@ const MyInfo = () => {
         setShowModify={setShowModify}
       />
     );
+  }
+
+  if (showModify) {
+    content = <ModifyUser />;
   }
 
   return <div>{content}</div>;

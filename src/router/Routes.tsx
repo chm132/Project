@@ -10,7 +10,8 @@ import { useEffect } from 'react';
 
 import LoginPage from '../pages/Auth/LoginPage/page';
 import CategoryPage from '../pages/CategoryPage/page';
-import SurveyPage from '../pages/SurveyPage/page';
+import SurveyResult from '../Components/Survey/SurveyComponent/Result';
+import FloatingResult from '../Components/SurveyFloating/SurveyComponents/Result';
 import NotFound from '../pages/NotFound/page';
 import NewsPage from '../pages/NewsPage/page';
 import NewsDetailPage from '../pages/NewsPage/DetailPage';
@@ -19,6 +20,8 @@ import MyPage from '../pages/MyPage/page';
 import { RootState } from '../redux/store';
 import { useSelector } from 'react-redux';
 import LessonPage from '../pages/LessonPage/page';
+import SurveyPage from '../pages/Survey/page';
+import SurveyFloating from '../pages/Survey/SurveyFloating/page';
 
 const Routes = () => {
   const currentUser = useSelector((state: RootState) => state.currentUser.name);
@@ -39,6 +42,12 @@ const Routes = () => {
         <Route path=":category/:categoryId" element={<CategoryPage />} />
         <Route path="lesson" element={<LessonPage />} />
         <Route path=":category/:categoryId/survey" element={<SurveyPage />} />
+        <Route
+          path=":category/:categoryId/survey/result"
+          element={<SurveyResult />}
+        />
+        <Route path="floating" element={<SurveyFloating />} />
+        <Route path="floating/result/floating" element={<FloatingResult />} />
 
         {/* 인증과정 (로그인, 회원가입) 라우팅입니다. */}
         <Route path="auth">

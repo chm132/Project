@@ -1,11 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FloatingButton = () => {
   const [firstHover, setFirstHover] = useState(false);
   const [secondHover, setSecondHover] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <section className="fixed w-20 h-40 rounded-lg right-[120px] bottom-5 bg-[#333333] z-40 font-semibold text-[#999999] text-xs text-center">
-      <span className="flex flex-col items-center px-4 py-2 transition-all cursor-pointer h-1/2">
+      <span
+        className="flex flex-col items-center px-4 py-2 transition-all cursor-pointer h-1/2"
+        onClick={() => navigate('/floating?page=1')}
+      >
         <svg
           onMouseEnter={() => setFirstHover(true)}
           onMouseLeave={() => setFirstHover(false)}

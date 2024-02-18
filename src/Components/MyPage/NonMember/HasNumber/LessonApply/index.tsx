@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import Lesson from '../../../Lesson';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/store';
-import { useGetLessonsMutation } from '../../../../../redux/apis/guestApi';
+import { useGetLessonsQuery } from '../../../../../redux/apis/guestApi';
 
 export const Lessons = [
   {
@@ -45,28 +44,32 @@ export const Lessons = [
 
 const LessonApply = () => {
   const phoneNum = useSelector((state: RootState) => state.nonUser.phoneNum);
-  const [getLessons, lessonResults] = useGetLessonsMutation();
 
-  useEffect(() => {
-    getLessons({ phoneNum: phoneNum });
-  }, []);
+  const { isLoading, data, error } = useGetLessonsQuery(phoneNum);
 
   let content;
 
-  if (lessonResults.error) {
+  if (isLoading) {
+    content = <p>불러오는중입니다...</p>;
+  }
+
+  if (error) {
     content = <p>수강 완료한 수업이 존재하지 않습니다.</p>;
   }
 
-  if (lessonResults.data) {
-    const Lessons = lessonResults.data.result.applicationList;
+  if (data) {
+    const Lessons = data.result.applicationList;
+
+    console.log(Lessons);
 
     content = (
       <>
         {Lessons.map((lesson, index) => (
           <Lesson
             key={index}
-            // id={lesson.lessonId}
-            // categoryId={lesson.categoryId}
+            id={lesson.lessonId}
+            category={lesson.categoryName}
+            imgUrl={lesson.imgUrl}
             status={lesson.applicationStatus}
             createdAt={lesson.createdAt}
             title={lesson.title}

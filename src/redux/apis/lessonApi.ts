@@ -4,10 +4,16 @@ import { DetailLessonResponse } from '../../types/Response/Category/DetailLesson
 import { HeaderSearchResponse } from '../../types/Response/Category/HeaderSearchType';
 import { RowResponse } from '../../types/Response/Category/RowType';
 
-interface ParamsProps {
+interface FilterParamsProps {
   categoryId: number;
   pageNo?: string;
   keyword?: string;
+  orderCriteria?: string;
+}
+
+interface FreeParamsProps {
+  categoryId: number;
+  pageNo?: string;
 }
 
 export const categoryApi = apiSlice.injectEndpoints({
@@ -33,10 +39,12 @@ export const categoryApi = apiSlice.injectEndpoints({
       },
     }),
 
-    //
-    getCategoryLessons: builder.query<CategoryLessonsResponse, ParamsProps>({
-      providesTags: ['Lesson'],
-      query: ({ categoryId, pageNo, keyword }) => {
+    // 카테고리별 공고 리스트 불러오기 - 필터 적용 및 검색어 적용
+    getCategoryLessons: builder.query<
+      CategoryLessonsResponse,
+      FilterParamsProps
+    >({
+      query: ({ categoryId, pageNo, keyword, orderCriteria }) => {
         let queryParams = '';
 
         if (keyword) {
@@ -47,12 +55,27 @@ export const categoryApi = apiSlice.injectEndpoints({
           queryParams += `${queryParams ? '&' : '?'}page=${pageNo}`;
         }
 
+        if (orderCriteria) {
+          queryParams += `${queryParams ? '&' : '?'}orderBy=${orderCriteria}`;
+        }
+
         return {
           url: `/lesson/category/${categoryId}${queryParams}`,
           method: 'GET',
         };
       },
     }),
+
+    // 무료 강의 버튼 클릭시 동작가능
+    getFreeLessons: builder.query<CategoryLessonsResponse, FreeParamsProps>({
+      query: ({ categoryId, pageNo }) => {
+        return {
+          url: `/lesson/category/${categoryId}/free?page=${pageNo}`,
+          method: 'GET',
+        };
+      },
+    }),
+
     getDetailLesson: builder.query<DetailLessonResponse, number>({
       providesTags: ['Lesson'],
       query: (lessonId) => {
@@ -62,6 +85,7 @@ export const categoryApi = apiSlice.injectEndpoints({
         };
       },
     }),
+
     // 회원일때 신청
     postApply: builder.mutation({
       invalidatesTags: ['Lesson'],
@@ -97,15 +121,6 @@ export const categoryApi = apiSlice.injectEndpoints({
         body: {},
       }),
     }),
-
-    postSurvey: builder.mutation({
-      invalidatesTags: ['Lesson'],
-      query: ({ ...post }) => ({
-        method: 'POST',
-        url: '/lessons/survey',
-        body: post,
-      }),
-    }),
   }),
 });
 
@@ -114,9 +129,9 @@ export const {
   useGetOrderByLessonsQuery,
   useGetCategoryLessonsQuery,
   useGetDetailLessonQuery,
+  useGetFreeLessonsQuery,
   useDeleteApplyMutation,
   usePostLikeMutation,
   useDeleteLikeMutation,
-  usePostSurveyMutation,
   usePostApplyMutation,
 } = categoryApi;

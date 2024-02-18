@@ -1,21 +1,20 @@
 import { useState } from 'react';
-import Input2 from '../../../Components/Survey/Input/Input2';
-import Label1 from '../Label/Label1';
+import Input2 from '../../Survey/Input/Input2';
+import Label1 from '../../Survey/Label/Label1';
+import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { setSurveyTwo } from '../../../redux/slices/surveySlice';
 
-interface Survey3Props {
-  onNextButtonClick: (nextStep: number) => void;
-}
-
-function Survey3({ onNextButtonClick }: Survey3Props) {
+function Floating5() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleButtonClick = () => {
-    onNextButtonClick(4);
+  const nextHandler = () => {
+    navigate('/floating?page=6');
   };
-  const PrevButtonClick = () => {
-    onNextButtonClick(2);
+
+  const prevHandler = () => {
+    navigate('/floating?page=4');
   };
 
   const [clicked, setClicked] = useState('');
@@ -54,7 +53,7 @@ function Survey3({ onNextButtonClick }: Survey3Props) {
         <div className="box1 m-14">
           <div className="flex question">
             <p className=" text-[18px] font-semibold">
-              3. 선호하는 선생님의 성별을 선택해주세요.
+              5. 선호하는 선생님의 성별을 선택해주세요.
             </p>
           </div>
           <div className="mt-6 click">
@@ -78,7 +77,7 @@ function Survey3({ onNextButtonClick }: Survey3Props) {
         <div className="box1 m-14">
           <div className="flex question">
             <p className=" text-[18px] font-semibold">
-              4. 선호하는 선생님의 나이대를 선택해주세요.
+              6. 선호하는 선생님의 나이대를 선택해주세요.
             </p>
             <p className=" ml-[16px] mt-[6px] text-[14px] text-[#999999]">
               복수 응답 가능
@@ -121,7 +120,7 @@ function Survey3({ onNextButtonClick }: Survey3Props) {
       <div className="flex button">
         <button
           className="hover:opacity-80  w-[240px] h-[51px] bg-[#B3B3B3] rounded-[50px] text-white ml-[315px] mt-[60px] flex justify-center py-3"
-          onClick={PrevButtonClick}
+          onClick={prevHandler}
         >
           <img
             className="px-1 py-1 "
@@ -132,7 +131,7 @@ function Survey3({ onNextButtonClick }: Survey3Props) {
         </button>
         <button
           className=" hover:opacity-80  w-[240px] h-[51px] bg-primary01 rounded-[50px] text-white ml-8 mt-[60px] flex justify-center py-3"
-          onClick={handleButtonClick}
+          onClick={nextHandler}
         >
           <p className="font-medium">다음으로</p>
           <img
@@ -146,4 +145,4 @@ function Survey3({ onNextButtonClick }: Survey3Props) {
   );
 }
 
-export default Survey3;
+export default Floating5;

@@ -1,26 +1,21 @@
-import { useEffect } from 'react';
 import Lesson from '../../../Lesson';
-import { useGetCompletedLessonsMutation } from '../../../../../redux/apis/guestApi';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/store';
+import { useGetCompletedLessonsQuery } from '../../../../../redux/apis/guestApi';
 
 const LessonComplete = () => {
   const phoneNum = useSelector((state: RootState) => state.nonUser.phoneNum);
 
-  const [getCompletedLessons, lessonResults] = useGetCompletedLessonsMutation();
-
-  useEffect(() => {
-    getCompletedLessons({ phoneNum: phoneNum });
-  }, []);
+  const { isLoading, data, error } = useGetCompletedLessonsQuery(phoneNum);
 
   let content;
 
-  if (lessonResults.error) {
+  if (error) {
     content = <p>수강 완료한 수업이 존재하지 않습니다.</p>;
   }
 
-  if (lessonResults.data) {
-    const Lessons = lessonResults.data.result.applicationList;
+  if (data) {
+    const Lessons = data.result.applicationList;
 
     content = (
       <>
@@ -28,8 +23,8 @@ const LessonComplete = () => {
         {Lessons.map((lesson, index) => (
           <Lesson
             key={index}
-            // id={lesson.lessonId}
-            // categoryId={lesson.categoryId}
+            id={lesson.lessonId}
+            category={lesson.categoryName}
             createdAt={lesson.createdAt}
             title={lesson.title}
             place={lesson.place}

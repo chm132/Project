@@ -40,6 +40,7 @@ const LessonCard = ({
         {/* 얜 걍 하드코딩해야겠다 */}
         <p className="text-sm font-medium text-[#666666]">
           10:00 ~ 12:00 (2시간)
+          {/* {formatTime(startTime, 'hh:mm') + '~' + formatTime(endTime, 'hh:mm')} */}
         </p>
       </section>
       <span className="absolute right-0 flex items-center justify-center w-16 h-8 rounded-tl-lg top-56 bg-primary01">

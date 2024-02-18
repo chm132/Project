@@ -1,5 +1,6 @@
 import { apiSlice } from '.';
 import { CurrentUserResponse } from '../../types/Response/MyPage/currentUserType';
+import { MyPageLessonResponse } from '../../types/Response/MyPage/getLessonsType';
 import { LikeResponse } from '../../types/Response/MyPage/likeLessonType';
 
 export const myPageApi = apiSlice.injectEndpoints({
@@ -24,8 +25,8 @@ export const myPageApi = apiSlice.injectEndpoints({
       },
     }),
     // 회원의 수업 신청 내역 조회
-    getLessons: builder.query<any, void>({
-      providesTags: ['Lesson'],
+    getUserLessons: builder.query<MyPageLessonResponse, void>({
+      // providesTags: ['Lesson'],
       query: () => {
         return {
           url: '/member/lessons',
@@ -35,8 +36,8 @@ export const myPageApi = apiSlice.injectEndpoints({
     }),
 
     // 회원의 수업 수강 내역 조회
-    getCompletedLessons: builder.query<any, void>({
-      providesTags: ['Lesson'],
+    getUserCompletedLessons: builder.query<MyPageLessonResponse, void>({
+      // providesTags: ['Lesson'],
       query: () => {
         return {
           url: '/member/lessons/completed',
@@ -50,6 +51,6 @@ export const myPageApi = apiSlice.injectEndpoints({
 export const {
   useGetUserDetailQuery,
   useGetLikeLessonsQuery,
-  useGetLessonsQuery,
-  useGetCompletedLessonsQuery,
+  useGetUserLessonsQuery,
+  useGetUserCompletedLessonsQuery,
 } = myPageApi;
