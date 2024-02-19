@@ -21,7 +21,7 @@ const Profile = ({ name, date }: ProfileProps) => {
   return (
     <div className="profile" style={{ display: 'flex' }}>
       <img
-        src="/assets/Profile/profile.png"
+        src="/assets/Profile/profile.svg"
         alt="profile"
         style={{
           width: '64px',

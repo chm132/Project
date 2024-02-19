@@ -15,7 +15,7 @@ import { truncate } from '../../../utils/truncate';
 const TeacherData: TeacherDataProps[] = [
   {
     id: 1,
-    profileImg: '/assets/Teacher/teacher1.png',
+    profileImg: '/assets/Teacher/teacher1.svg',
     stars: 5.0,
     name: '김유리',
     major: '골프/수영',
@@ -24,7 +24,7 @@ const TeacherData: TeacherDataProps[] = [
   },
   {
     id: 2,
-    profileImg: '/assets/Teacher/teacher2.png',
+    profileImg: '/assets/Teacher/teacher2.svg',
     stars: 5.0,
     name: '이사부',
     major: '취업/창업',
@@ -33,7 +33,7 @@ const TeacherData: TeacherDataProps[] = [
   },
   {
     id: 3,
-    profileImg: '/assets/Teacher/teacher3.png',
+    profileImg: '/assets/Teacher/teacher3.svg',
     stars: 5.0,
     name: '김기강',
     major: '영상촬영/편집/일러스트',
@@ -42,7 +42,7 @@ const TeacherData: TeacherDataProps[] = [
   },
   {
     id: 4,
-    profileImg: '/assets/Teacher/teacher4.png',
+    profileImg: '/assets/Teacher/teacher4.svg',
     stars: 5.0,
     name: '신백호',
     major: '담보/분양권/상속',
@@ -51,7 +51,7 @@ const TeacherData: TeacherDataProps[] = [
   },
   {
     id: 5,
-    profileImg: '/assets/Teacher/teacher1.png',
+    profileImg: '/assets/Teacher/teacher1.svg',
     stars: 5.0,
     name: '김철수',
     major: '골프/수영',
@@ -69,7 +69,7 @@ const TeacherData: TeacherDataProps[] = [
   },
   {
     id: 7,
-    profileImg: '/assets/Teacher/teacher3.png',
+    profileImg: '/assets/Teacher/teacher3.svg',
     stars: 2.1,
     name: '이세돌',
     major: '골프/수영',

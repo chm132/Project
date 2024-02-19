@@ -43,7 +43,7 @@ const Menu = () => {
             <>
               <li className="flex items-center gap-1">
                 <img
-                  src="/assets/Utils/dummyProfile.png"
+                  src="/assets/Utils/dummyProfile.svg"
                   alt="profile"
                   className="w-5 h-5 rounded-full"
                 />

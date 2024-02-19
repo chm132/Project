@@ -17,91 +17,91 @@ import { NewsDataProps } from '../../types/NewsDataProps';
 const NewsData = [
   {
     id: 1,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '1',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 2,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '2',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 3,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '3',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 4,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: 'K강사가 알려주는 스마트한 디지털 활용(스마트폰 초급)',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 5,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '5',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 6,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '6',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 7,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '7',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 8,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '-8',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 9,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '9-',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 10,
-    img: '/assets/Education/edu1.png',
+    img: '/assets/Education/edu1.svg',
     category: '건강 상식',
     title: '10',
-    profileImg: '/assets/Education/edu1.png',
+    profileImg: '/assets/Education/edu1.svg',
     author: '친절한',
     time: '1시간 전',
   },
@@ -201,17 +201,17 @@ const DetailPage = () => {
               </p>
               <img
                 style={{ marginBottom: '24px' }}
-                src="/assets/News/post1.png"
+                src="/assets/News/post1.svg"
                 alt="post"
               />
               <img
                 style={{ marginBottom: '32px' }}
-                src="/assets/News/post2.png"
+                src="/assets/News/post2.svg"
                 alt="post"
               />
               <p style={{ textAlign: 'right', color: '#888888' }}>
                 <img
-                  src="/assets/News/view.png"
+                  src="/assets/News/view.svg"
                   alt="view"
                   style={{
                     display: 'inline-block',
@@ -343,7 +343,7 @@ const DetailPage = () => {
                               <img
                                 // src={news.writerProfile}
                                 // alt={news.writerProfile}
-                                src={`/assets/Teacher/teacher1.png`}
+                                src={`/assets/Teacher/teacher1.svg`}
                                 alt="authorImg"
                                 style={{
                                   width: '24px',

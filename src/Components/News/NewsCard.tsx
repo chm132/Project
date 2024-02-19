@@ -38,7 +38,7 @@ const NewsCard = ({
     >
       <div style={{ display: 'flex' }}>
         <img
-          src="/assets/News/postList.png"
+          src="/assets/News/postList.svg"
           alt="profile"
           style={{
             borderRadius: '24px, 0px, 0px, 24px',
@@ -107,7 +107,7 @@ const NewsCard = ({
             }}
           >
             <img
-              src="/assets/Profile/profile.png"
+              src="/assets/Profile/profile.svg"
               alt="profile"
               style={{
                 width: '24px',

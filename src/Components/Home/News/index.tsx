@@ -37,7 +37,7 @@ const News = () => {
             <img
               // src={news.filePath}
               // alt={news.filePath}
-              src={`/assets/News/news${index + 1}.png`}
+              src={`/assets/News/news${index + 1}.svg`}
               alt="newsImg"
               style={{
                 width: '103px',
