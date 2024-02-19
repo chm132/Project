@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import ShowUser from './ShowUser';
-// import ModifyUser from './ModifyUser';
 import { useGetUserDetailQuery } from '../../../../redux/apis/myPageApi';
-import ModifyUser from './ModifyUser';
+import Modify from './Modify';
 
 const MyInfo = () => {
   const { data } = useGetUserDetailQuery();
@@ -28,7 +27,7 @@ const MyInfo = () => {
   }
 
   if (showModify) {
-    content = <ModifyUser />;
+    content = <Modify setShowModify={setShowModify} />;
   }
 
   return <div>{content}</div>;

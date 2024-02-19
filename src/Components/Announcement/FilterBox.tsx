@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -35,25 +35,25 @@ const FilterBox = ({
 
   // 아래 주석부분 현재 인증관련 오류로 잠시 해놓은것이니 지우지 마세요
 
-  // const token = sessionStorage.getItem('accessToken');
+  const token = sessionStorage.getItem('accessToken');
 
-  // const fetchData = async () => {
-  //   const response = await axios.get(`/lessons/${categoryId}/surveys`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
-  //     },
-  //   });
-  //   console.log(response);
-  // };
+  const fetchData = async () => {
+    const response = await axios.get(`/lessons/${categoryId}/surveys`, {
+      headers: {
+        Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
+      },
+    });
+    console.log(response);
+  };
 
   // isClicked는 드롭다운 왔다갔다
   const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
 
   const searchHandler = () => {
-    // if (token) {
-    //   fetchData();
-    // }
+    if (token) {
+      fetchData();
+    }
     navigate('survey');
   };
 

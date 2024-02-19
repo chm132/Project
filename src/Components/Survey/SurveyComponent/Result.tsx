@@ -3,22 +3,28 @@ import TimeLine from '../../TimeLine';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { categoryMapping } from './../../../pages/CategoryPage/page';
 import { ResultList } from '../../../types/Response/Survey/SurveyLessonType';
+import { transKrCategoryId } from '../../../utils/transKrCategoryId';
 
 const SurveyResult = () => {
   const categoryName = useParams()?.category || '스마트폰';
+
+  const { state } = useLocation();
+
   const navigate = useNavigate();
 
   const handleGoToSurvey = () => {
     // /survey로 이동
-    navigate('/:category/:categoryId/survey');
+    navigate(`/${categoryName}/${state.data.result[0].categoryId}/survey`);
   };
 
   const handleGoToList = () => {
     // /:category/:categoryID로 이동
-    navigate('/:category/:categoryId');
+    navigate(
+      `/${transKrCategoryId(state.data.result[0].categoryId)}/${
+        state.data.result[0].categoryId
+      }`,
+    );
   };
-
-  const { state } = useLocation();
 
   let content;
 
@@ -27,7 +33,7 @@ const SurveyResult = () => {
     content = (
       <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
         {Lessons.map((l: ResultList) => (
-          <div key={l.lessonId} className="w-full mb-0 bg-red-50">
+          <div key={l.lessonId} className="w-full">
             <LessonCard
               id={l.lessonId}
               img={l.imgUrl}

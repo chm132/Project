@@ -15,6 +15,7 @@ export const myPageApi = apiSlice.injectEndpoints({
         };
       },
     }),
+
     // 회원의 찜목록 조회
     getLikeLessons: builder.query<LikeResponse, void>({
       query: () => {
@@ -45,6 +46,26 @@ export const myPageApi = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    // 마이페이지 회원 정보 수정하기
+    patchModifyUser: builder.mutation({
+      invalidatesTags: ['User'],
+      query: ({ ...patch }) => ({
+        method: 'PATCH',
+        url: '/member/detail',
+        body: patch,
+      }),
+    }),
+
+    // 마이페이지 비밀번호 수정하기
+    patchPassword: builder.mutation({
+      invalidatesTags: ['User'],
+      query: ({ ...patch }) => ({
+        method: 'PATCH',
+        url: '/member/password',
+        body: patch,
+      }),
+    }),
   }),
 });
 
@@ -53,4 +74,6 @@ export const {
   useGetLikeLessonsQuery,
   useGetUserLessonsQuery,
   useGetUserCompletedLessonsQuery,
+  usePatchModifyUserMutation,
+  usePatchPasswordMutation,
 } = myPageApi;

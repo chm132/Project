@@ -27,9 +27,14 @@ const currentUserSlice = createSlice({
       state.name = '';
       state.isLoggedIn = false;
     },
+
+    updateCurrentUserNickname: (state, action) => {
+      Object.assign(state, action.payload);
+    },
   },
 });
 
-export const { setCurrentUser, removeCurrentUser } = currentUserSlice.actions;
+export const { setCurrentUser, removeCurrentUser, updateCurrentUserNickname } =
+  currentUserSlice.actions;
 
 export default currentUserSlice.reducer;
