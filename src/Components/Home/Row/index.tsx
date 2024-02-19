@@ -46,7 +46,7 @@ const Row = ({ title, filter }: RowProps) => {
           {RowData?.map((d, index) => (
             <SwiperSlide key={index}>
               <div
-                className="w-[95%] h-[95%] rounded-sm overflow-hidden transition-all cursor-pointer"
+                className="w-[95%] h-[95%] rounded-sm overflow-hidden hover:scale-105 hover:ease-in-out transition-all cursor-pointer"
                 onClick={() => navigate(`/lesson?lessonId=${d.lessonId}`)}
               >
                 <img

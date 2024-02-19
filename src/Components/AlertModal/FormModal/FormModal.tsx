@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { usePostLessonGuestMutation } from '../../redux/apis/guestApi';
+import { usePostLessonGuestMutation } from '../../../redux/apis/guestApi';
 import { useLocation } from 'react-router-dom';
 
 interface FormModalProps {
@@ -35,7 +35,31 @@ const FormModal = ({ closeModal }: FormModalProps) => {
       email: enteredFirstEmail + '@' + enteredSecondEmail,
       phoneNum: enteredFirstPhone + enteredSecondPhone + enteredThirdPhone,
     });
+
+    closeModal(false);
   };
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    // 필드 유효성 검사
+    const isNameValid = enteredName.trim() !== '';
+    const isPhoneValid =
+      enteredFirstPhone.trim() !== '' &&
+      enteredSecondPhone.trim() !== '' &&
+      enteredThirdPhone.trim() !== '';
+    const isEmailValid =
+      enteredFirstEmail.trim() !== '' && enteredSecondEmail.trim() !== '';
+
+    setIsFormValid(isNameValid && isPhoneValid && isEmailValid);
+  }, [
+    enteredName,
+    enteredFirstPhone,
+    enteredSecondPhone,
+    enteredThirdPhone,
+    enteredFirstEmail,
+    enteredSecondEmail,
+  ]);
 
   return (
     <div
@@ -293,20 +317,22 @@ const FormModal = ({ closeModal }: FormModalProps) => {
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button
+            className={`${isFormValid ? 'hover:opacity-80' : ''}`}
             style={{
               width: '306px',
               height: '51px',
-              backgroundColor: '#EC9D26',
               padding: '16px, 124px, 16px, 122px',
               borderRadius: '50px',
-
               marginBottom: '32px',
               marginTop: '9px',
               color: '#FFFFFF',
               fontSize: '16px',
               lineHeight: '19.09px',
+
+              backgroundColor: isFormValid ? '#EC9D26' : '#CCCCCC',
             }}
             onClick={applyHandler}
+            disabled={!isFormValid}
           >
             신청 완료
           </button>

@@ -30,7 +30,7 @@ const CheckPhone = () => {
           />
         </section>
         <button
-          className="text-white bg-primary01 rounded-[50px] w-[500px] font-semibold py-3"
+          className="text-white bg-primary01 rounded-[50px] w-[500px] font-semibold py-3 hover:opacity-80 transition-all"
           onClick={checkHandler}
         >
           확인

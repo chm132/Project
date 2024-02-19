@@ -50,22 +50,33 @@ const Menu = () => {
                 <p>{userName}</p>
               </li>
               <Link to="/mypage/1">
-                <li className="cursor-pointer">마이페이지</li>
+                <li className="cursor-pointer hover:opacity-60 transition-all">
+                  마이페이지
+                </li>
               </Link>
-              <li className="cursor-pointer" onClick={() => signOut()}>
+              <li
+                className="cursor-pointer hover:opacity-60 transition-all"
+                onClick={() => signOut()}
+              >
                 로그아웃
               </li>
             </>
           ) : (
             <>
               <Link to="/mypage/1">
-                <li className="cursor-pointer">비회원 신청내역</li>
+                <li className="cursor-pointer hover:opacity-60 transition-all">
+                  비회원 신청내역
+                </li>
               </Link>
               <Link to="/auth/login">
-                <li className="cursor-pointer">로그인</li>
+                <li className="cursor-pointer hover:opacity-60 transition-all">
+                  로그인
+                </li>
               </Link>
               <Link to="/auth/join/1">
-                <li className="cursor-pointer">회원가입</li>
+                <li className="cursor-pointer hover:opacity-60 transition-all">
+                  회원가입
+                </li>
               </Link>
             </>
           )}

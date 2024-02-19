@@ -97,7 +97,7 @@ const Teacher = () => {
         <div>
           {teacherData?.map((d) => (
             <SwiperSlide key={d.id}>
-              <div className="w-[95%] h-[95%] rounded-sm overflow-hidden transition-all cursor-pointer">
+              <div className="w-[95%] h-[95%] rounded-sm overflow-hidden hover:scale-105 hover:ease-in-out transition-all cursor-pointer">
                 <div className="flex items-center gap-2 py-2 pl-4 bg-gray-100 rounded-lg">
                   {d.profileImg ? (
                     <img

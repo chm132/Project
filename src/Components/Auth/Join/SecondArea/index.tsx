@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import TermsOfUse from './TermsOfUse';
 import { useState } from 'react';
+import TermsOfServiceModal from '../../../AlertModal/SignupModal/RequiredFieldsModal';
 
 const SecondArea = () => {
   const [isChecked, setIsChecked] = useState([false, false, false]);
   const [notChecked, setNotChecked] = useState([true, true, true]);
+  const [isModalOpen, setIsModalOpen] = useState(false); //모달 상태 아래 주석있는 부분이 오류가 나는 부분입니다!
 
   const navigate = useNavigate();
 
@@ -19,6 +21,10 @@ const SecondArea = () => {
           return notChecked[index];
         }
       });
+
+      if (isChecked.includes(false)) {
+        setIsModalOpen(true);
+      }
       setNotChecked(newNotChecked);
     }
   };
@@ -33,6 +39,7 @@ const SecondArea = () => {
 
   return (
     <div className="flex flex-col items-center gap-20 mt-10 px-52">
+      {/*{isModalOpen && <TermsOfServiceModal closeModal={setIsModalOpen} />} */}
       <TermsOfUse
         title="이용약관"
         onChange={() => handleCheckboxChange(0)}

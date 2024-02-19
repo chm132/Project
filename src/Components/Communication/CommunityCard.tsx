@@ -23,7 +23,7 @@ const CommunityCard = ({
 
   return (
     <section
-      className="bg-white rounded-[18px] px-8 py-6 cursor-pointer flex flex-col gap-2"
+      className="bg-white rounded-[18px] px-8 py-6 cursor-pointer hover:scale-105 hover:ease-in-out transition-all  flex flex-col gap-2"
       onClick={() => navigate(`${id}`)}
     >
       <p className="font-medium text-primary01">

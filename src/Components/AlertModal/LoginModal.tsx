@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { plusStep } from '../../redux/slices/stepSlice';
 import { useState } from 'react';
-import FormModal from './FormModal';
+import FormModal from './FormModal/FormModal';
 
 interface LoginModalProps {
   home?: boolean;

@@ -37,7 +37,7 @@ const FloatingResult = () => {
         </div>
         <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
           {Lessons.map((l: ResultList) => (
-            <div key={l.lessonId} className="w-full mb-0 bg-red-50">
+            <div key={l.lessonId} className="w-full mb-0">
               <LessonCard
                 id={l.lessonId}
                 img={l.imgUrl}

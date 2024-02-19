@@ -29,7 +29,7 @@ const EnteredComment = ({ left }: EnteredCommentProps) => {
         placeholder="댓글 입력하기..."
       />
       <button
-        className="px-[55px] py-5 text-white rounded-[16px] bg-primary01"
+        className="px-[55px] py-5 text-white rounded-[16px] bg-primary01 hover:opacity-80 transition-all"
         onClick={postHandler}
       >
         등록
