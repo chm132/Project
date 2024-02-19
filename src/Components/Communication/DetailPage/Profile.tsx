@@ -10,7 +10,7 @@ const Profile = ({ name, date, small }: ProfileProps) => {
   return (
     <section className="flex items-center gap-3 py-4">
       <img
-        src="/assets/Utils/dummyProfile.png"
+        src="/assets/Utils/dummyProfile.svg"
         alt="profile"
         className={`${small ? 'w-10 h-10' : 'w-16 h-16'}`}
       />

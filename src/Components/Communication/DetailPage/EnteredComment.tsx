@@ -35,7 +35,7 @@ const EnteredComment = ({ left }: EnteredCommentProps) => {
         등록
       </button>
       <img
-        src="/assets/Utils/dummyProfile2.png"
+        src="/assets/Utils/dummyProfile2.svg"
         alt="profile"
         className={`absolute w-8 h-8 left-5 top-5 ${left && 'left-16'}`}
       />

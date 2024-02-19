@@ -21,7 +21,7 @@ const SurveyFloating = () => {
     <div>
       <TimeLine
         title="내용"
-        imgSrc={`/assets/TimeLine/mypage.png`}
+        imgSrc={`/assets/TimeLine/mypage.svg`}
         contents="내용"
       />
       <div className="w-full h-[627px] bg-[#E6E6E6]">
