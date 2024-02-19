@@ -17,91 +17,91 @@ import { NewsDataProps } from '../../types/NewsDataProps';
 const NewsData = [
   {
     id: 1,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '1',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 2,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '2',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 3,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '3',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 4,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: 'K강사가 알려주는 스마트한 디지털 활용(스마트폰 초급)',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 5,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '5',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 6,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '6',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 7,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '7',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 8,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '-8',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 9,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '9-',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
   {
     id: 10,
-    img: '/assets/Education/edu1.svg',
+    img: '/assets/Education/edu1.png',
     category: '건강 상식',
     title: '10',
-    profileImg: '/assets/Education/edu1.svg',
+    profileImg: '/assets/Education/edu1.png',
     author: '친절한',
     time: '1시간 전',
   },
@@ -148,90 +148,68 @@ const DetailPage = () => {
             </p>
           </div>
         </nav>
-        <div
-          style={{
-            backgroundColor: '#E6E6E6',
-            width: '100%',
-            height: '1844px',
-          }}
-        >
-          <div
-            style={{
-              position: 'relative',
-              top: '32px',
-
-              backgroundColor: '#FFFFFF',
-              width: '880px',
-              height: '1069px',
-              borderRadius: '24px',
-              margin: '0 auto',
-              boxShadow: '0 6px 10px #50371226',
-            }}
-          >
-            <Profile name={detailData.author} date={detailData.createdAt} />
+        <div>
+          <div className="bg-[#F2F2F2] px-80 pt-10 pb-28">
             <div
-              className="content"
-              style={{
-                marginLeft: '64px',
-                maxWidth: '752px',
-                textAlign: 'left',
-              }}
+              style={{ padding: '64px' }}
+              className="py-8 px-12 border rounded-[18px] shadow-lg transition-all bg-white"
             >
-              <p
-                style={{
-                  height: '29px',
-                  marginBottom: '16px',
-                  fontSize: '24px',
-                  color: '#000000',
-                  fontWeight: 'bold',
-                }}
-              >
-                {detailData.title}
-              </p>
-              <p
-                style={{
-                  marginBottom: '32px',
-                  fontSize: '18px',
-                  width: '752px',
-                  lineHeight: '28.8px',
-                  color: '#666666',
-                }}
-              >
-                {detailData.content}
-              </p>
-              <img
-                style={{ marginBottom: '24px' }}
-                src="/assets/News/post1.svg"
-                alt="post"
-              />
-              <img
-                style={{ marginBottom: '32px' }}
-                src="/assets/News/post2.svg"
-                alt="post"
-              />
-              <p style={{ textAlign: 'right', color: '#888888' }}>
-                <img
-                  src="/assets/News/view.svg"
-                  alt="view"
+              <Profile name={detailData.author} date={detailData.createdAt} />
+              <div className="content">
+                <p
                   style={{
-                    display: 'inline-block',
-                    verticalAlign: 'middle',
-                    marginRight: '8px',
+                    height: '29px',
+                    marginBottom: '16px',
+                    fontSize: '24px',
+                    color: '#000000',
+                    fontWeight: 'bold',
                   }}
+                >
+                  {detailData.title}
+                </p>
+                <p
+                  style={{
+                    marginBottom: '32px',
+                    fontSize: '18px',
+                    width: '752px',
+                    lineHeight: '28.8px',
+                    color: '#666666',
+                  }}
+                >
+                  {detailData.content}
+                </p>
+                <img
+                  style={{ marginBottom: '24px' }}
+                  src="/assets/News/post1.svg"
+                  alt="post"
                 />
-                <span style={{ fontSize: '18px', verticalAlign: 'middle' }}>
-                  {detailData.views.toLocaleString()}명이 봤어요
-                </span>
-              </p>
+                <img
+                  style={{ marginBottom: '32px' }}
+                  src="/assets/News/post2.svg"
+                  alt="post"
+                />
+                <p style={{ textAlign: 'right', color: '#888888' }}>
+                  <img
+                    src="/assets/News/view.svg"
+                    alt="view"
+                    style={{
+                      display: 'inline-block',
+                      verticalAlign: 'middle',
+                      marginRight: '8px',
+                    }}
+                  />
+                  <span style={{ fontSize: '18px', verticalAlign: 'middle' }}>
+                    {detailData.views.toLocaleString()}명이 봤어요
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
-
           <div
             style={{
               width: '100%',
               height: '666px',
               backgroundColor: '#FFFFFF',
-              marginTop: '109px',
             }}
           >
             <div
@@ -274,7 +252,7 @@ const DetailPage = () => {
                   {NewsData.map((news) => (
                     <SwiperSlide key={news.id}>
                       <div
-                        className="newscard"
+                        className="cursor-pointer hover:scale-105 hover:ease-in-out transition-all"
                         style={{
                           width: '258px',
                           height: '388px',

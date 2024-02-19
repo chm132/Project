@@ -35,7 +35,7 @@ const Community = () => {
             <p className="text-lg font-semibold hover:underline hover:decoration-4 w-fit">
               {data.title}
             </p>
-            <p className="text-lg text-[#B3B3B3]">{truncate(data.body, 44)}</p>
+            <p className="text-lg text-[#B3B3B3]">{truncate(data.body, 28)}</p>
             <div className="flex items-center mt-[2px] gap-2 text-sm text-slate-400">
               <span className="flex items-center gap-[2px]">
                 <img

@@ -31,7 +31,7 @@ const News = () => {
         {newsData.map((news, index) => (
           <div
             key={news.id}
-            className="flex  gap-1 p-2 overflow-hidden transition-all cursor-pointer"
+            className="flex mb-4 gap-1 p-2 overflow-hidden transition-all cursor-pointer"
             onClick={() => navigate(`/news/${news.id}`)}
           >
             <img
@@ -63,7 +63,7 @@ const News = () => {
                 {news.title}
               </p>
               <p className="text-lg text-[#B3B3B3]">
-                {truncate(news.content, 37)}
+                {truncate(news.content, 25)}
               </p>
               <section
                 className="author"
@@ -114,7 +114,7 @@ const News = () => {
         style={{
           marginBottom: '24px',
         }}
-        className="w-full h-[2px] bg-black mt-2"
+        className="w-full h-[2px] bg-black mt-2 mb-5"
       />
       {content}
     </div>

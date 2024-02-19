@@ -23,7 +23,7 @@ const NewsCard = ({
 
   return (
     <section
-      className="container"
+      className="hover:scale-105 hover:ease-in-out transition-all"
       style={{
         display: 'flex',
 

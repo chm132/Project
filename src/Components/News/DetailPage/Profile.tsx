@@ -21,14 +21,14 @@ const Profile = ({ name, date }: ProfileProps) => {
   return (
     <div className="profile" style={{ display: 'flex' }}>
       <img
-        src="/assets/Profile/profile.svg"
+        src="/assets/Profile/profile.png"
         alt="profile"
         style={{
           width: '64px',
           height: '64px',
           borderRadius: '50%',
           marginRight: '10px',
-          margin: '64px 16px 32px 64px',
+          margin: '0 16px 32px 0',
         }}
       />
       <div>
@@ -36,7 +36,7 @@ const Profile = ({ name, date }: ProfileProps) => {
           style={{
             height: '24px',
             fontSize: '20px',
-            margin: '70px 0px 8px 0px',
+            margin: '6px 0px 8px 0px',
             fontWeight: 'bold',
             lineHeight: '23.87px',
           }}
